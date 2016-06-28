@@ -105,6 +105,11 @@ public class WebController {
 		userManager.updateUser(user);
 		return user;
 	}
+	@RequestMapping(value = "/cs480/test", method = RequestMethod.GET)
+		String test(){
+	
+		return "test";
+	}
 
 	/**
 	 * This API deletes the user. It uses HTTP DELETE method.
