@@ -149,5 +149,10 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/cs480/toni", method = RequestMethod.GET)
+	String toni(){
+	return "toni is testing";
+}
 
 }
