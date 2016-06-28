@@ -75,6 +75,12 @@ public class WebController {
 		User user = userManager.getUser(userId);
 		return user;
 	}
+	
+	//Gets the user's name.
+	@RequestMapping(value = "/cs480/user/name/{userId}", method = RequestMethod.GET)
+	String getUserName(@PathVariable("userId") String userId) {
+		return userManager.getUser(userId).getName();
+	}
 
 	/**
 	 * This is an example of sending an HTTP POST request to
@@ -144,5 +150,10 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/cs480/toni", method = RequestMethod.GET)
+	String toni(){
+	return "toni is testing";
+}
 
 }
