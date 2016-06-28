@@ -1,5 +1,6 @@
 package edu.csupomona.cs480.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +47,9 @@ public class WebController {
 	 */
 	
 	@RequestMapping("/sway")
-	String swaysway(){
-	
-		return "sway.html";
+	String sway(){
+	//returns html text
+		return "<h1>Test Page</h1><a href=\"http://corgiorgy.com/\"><img src=\"http://45.media.tumblr.com/d9638010e1374a54620dbe2cd847f647/tumblr_o52vjkloZo1rnhl8xo1_500.gif\"></a><br><b>Test</b> ";
 	}
 	
 	@RequestMapping(value = "/cs480/ping", method = RequestMethod.GET)
