@@ -44,6 +44,13 @@ public class WebController {
 	 * in your web browser, type the link:
 	 * 	http://localhost:8080/cs480/ping
 	 */
+	
+	@RequestMapping("/sway")
+	String swaysway(){
+	
+		return "sway.html";
+	}
+	
 	@RequestMapping(value = "/cs480/ping", method = RequestMethod.GET)
 	String healthCheck() {
 		// You can replace this with other string,
