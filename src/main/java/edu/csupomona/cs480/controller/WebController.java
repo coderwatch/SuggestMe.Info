@@ -1,6 +1,7 @@
 package edu.csupomona.cs480.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 
 /**
@@ -154,6 +159,32 @@ public class WebController {
 	@RequestMapping(value = "/cs480/toni", method = RequestMethod.GET)
 	String toni(){
 	return "toni is testing";
-}
+	}
+	
+	@RequestMapping(value = "/cs480/google", method = RequestMethod.GET)
+	String google(){
+		String answer = null;
+		Document doc;
+		try {
 
-}
+			// need http protocol
+			doc = Jsoup.connect("http://google.com").get();
+
+
+			String title = doc.title();
+			answer = answer + "title : " + title;
+
+			Elements links = doc.select("a[href]");
+			for (Element link : links) {
+				answer = answer + "link: " + link.attr("href") + "   ";
+				answer = answer + "text: " + link.text() + "   ";
+
+			}
+		} 
+		
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return answer;
+	  }
+	}
