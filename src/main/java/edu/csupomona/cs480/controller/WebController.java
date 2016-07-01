@@ -1,5 +1,7 @@
 package edu.csupomona.cs480.controller;
 
+
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 
 /**
@@ -44,6 +50,13 @@ public class WebController {
 	 * in your web browser, type the link:
 	 * 	http://localhost:8080/cs480/ping
 	 */
+	
+	@RequestMapping("/sway")
+	String sway(){
+	//returns html text
+		return "<h1>Test Page</h1><a href=\"http://corgiorgy.com/\"><img src=\"http://45.media.tumblr.com/d9638010e1374a54620dbe2cd847f647/tumblr_o52vjkloZo1rnhl8xo1_500.gif\"></a><br><b>Test</b> ";
+	}
+	
 	@RequestMapping(value = "/cs480/ping", method = RequestMethod.GET)
 	String healthCheck() {
 		// You can replace this with other string,
@@ -66,6 +79,12 @@ public class WebController {
 	User getUser(@PathVariable("userId") String userId) {
 		User user = userManager.getUser(userId);
 		return user;
+	}
+	
+	//Gets the user's name.
+	@RequestMapping(value = "/cs480/user/name/{userId}", method = RequestMethod.GET)
+	String getUserName(@PathVariable("userId") String userId) {
+		return userManager.getUser(userId).getName();
 	}
 
 	/**
@@ -136,5 +155,36 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/cs480/toni", method = RequestMethod.GET)
+	String toni(){
+	return "toni is testing";
+	}
+	
+	@RequestMapping(value = "/cs480/google", method = RequestMethod.GET)
+	String google(){
+		String answer = null;
+		Document doc;
+		try {
 
-}
+			// need http protocol
+			doc = Jsoup.connect("http://google.com").get();
+
+
+			String title = doc.title();
+			answer = answer + "title : " + title;
+
+			Elements links = doc.select("a[href]");
+			for (Element link : links) {
+				answer = answer + "link: " + link.attr("href") + "   ";
+				answer = answer + "text: " + link.text() + "   ";
+
+			}
+		} 
+		
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return answer;
+	  }
+	}
