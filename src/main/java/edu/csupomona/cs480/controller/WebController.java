@@ -4,6 +4,9 @@ package edu.csupomona.cs480.controller;
 import java.io.IOException;
 import java.util.List;
 
+//////////////////////////////////////////////////////////////////
+//////////////////////LIBRARIES///////////////////////////////////
+//////////////////////////////////////////////////////////////////
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.google.common.base.Joiner;
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 /**
  * This is the controller used by Spring framework.
@@ -50,13 +57,13 @@ public class WebController {
 	 * in your web browser, type the link:
 	 * 	http://localhost:8080/cs480/ping
 	 */
-	
+
 	@RequestMapping("/sway")
 	String sway(){
-	//returns html text
+		//returns html text
 		return "<h1>Test Page</h1><a href=\"http://corgiorgy.com/\"><img src=\"http://45.media.tumblr.com/d9638010e1374a54620dbe2cd847f647/tumblr_o52vjkloZo1rnhl8xo1_500.gif\"></a><br><b>Test</b> ";
 	}
-	
+
 	@RequestMapping(value = "/cs480/ping", method = RequestMethod.GET)
 	String healthCheck() {
 		// You can replace this with other string,
@@ -80,7 +87,7 @@ public class WebController {
 		User user = userManager.getUser(userId);
 		return user;
 	}
-	
+
 	//Gets the user's name.
 	@RequestMapping(value = "/cs480/user/name/{userId}", method = RequestMethod.GET)
 	String getUserName(@PathVariable("userId") String userId) {
@@ -118,10 +125,19 @@ public class WebController {
 		return user;
 	}
 	@RequestMapping(value = "/cs480/test", method = RequestMethod.GET)
-		String test(){
-	
+	String test(){
+
 		return "test";
 	}
+
+	//test of the guava library for working and replacing nulls easily/////
+	@RequestMapping(value = "/guava", method = RequestMethod.GET)
+	String guavaNullChecker(){
+		String[] helloWorldNullArray = {"Hello",null};
+		String nullConcat = Joiner.on(", ").useForNull("World!").join(helloWorldNullArray);
+		return nullConcat;
+	}
+
 
 	/**
 	 * This API deletes the user. It uses HTTP DELETE method.
@@ -155,12 +171,12 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/cs480/toni", method = RequestMethod.GET)
 	String toni(){
-	return "toni is testing";
+		return "toni is testing";
 	}
-	
+
 	@RequestMapping(value = "/cs480/google", method = RequestMethod.GET)
 	String google(){
 		String answer = null;
@@ -181,10 +197,10 @@ public class WebController {
 
 			}
 		} 
-		
+
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 		return answer;
-	  }
 	}
+}
