@@ -24,7 +24,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.common.base.Joiner;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.math.fraction.Fraction;
+
+import java.io.*;
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
@@ -150,6 +154,24 @@ public class WebController {
 				fractSquared = fract.multiply(fract);
 		
 		return "You entered " + fract.toString() + "; that fraction squared is " + fractSquared;
+	}
+	
+	
+	//<!----COMMONS IO TEST------>
+	
+	@RequestMapping(value = "/file", method = RequestMethod.GET)
+	String commonsio() throws IOException{
+		//uses commons io implementaion
+		//creates text file then uses commons io to read file and print on webpage
+		boolean check = (new File("demo.txt").delete());
+		if(check){
+			FileWriter writer = new FileWriter("demo.txt", true);
+			writer.write("<h1>TEST GIF</h2>");
+			writer.write("<img src=\"https://m.popkey.co/f446cc/qVq0a.gif\">");
+			writer.close();
+		}
+		String ok = FileUtils.fileRead("demo.txt");
+		return ok;
 	}
 
 
