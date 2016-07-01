@@ -24,6 +24,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.google.common.base.Joiner;
+import org.apache.commons.math.fraction.Fraction;
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
@@ -136,6 +137,19 @@ public class WebController {
 		String[] helloWorldNullArray = {"Hello",null};
 		String nullConcat = Joiner.on(", ").useForNull("World!").join(helloWorldNullArray);
 		return nullConcat;
+	}
+	
+//	Commons Math library test
+	@RequestMapping(value = "/math/{numerator}/{denominator}", method = RequestMethod.GET)
+	String showFractionSquared(
+			@PathVariable("numerator") int numer,
+			@PathVariable("denominator") int denom
+			)
+	{
+		Fraction fract = new Fraction(numer, denom), 
+				fractSquared = fract.multiply(fract);
+		
+		return "You entered " + fract.toString() + "; that fraction squared is " + fractSquared;
 	}
 
 
