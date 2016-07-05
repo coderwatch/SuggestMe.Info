@@ -2,6 +2,7 @@ package edu.csupomona.cs480.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 //////////////////////////////////////////////////////////////////
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.csupomona.cs480.App;
+import edu.csupomona.cs480.APIs.EventAPI.EventAPI;
+import edu.csupomona.cs480.APIs.EventAPI.EventBriteAPI;
+import edu.csupomona.cs480.Events.Event;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
 import org.jsoup.Jsoup;
@@ -91,6 +95,15 @@ public class WebController {
 	User getUser(@PathVariable("userId") String userId) {
 		User user = userManager.getUser(userId);
 		return user;
+	}
+	
+	@RequestMapping(value = "/EventBrite/{location}", method = RequestMethod.GET)
+	String getEvents(@PathVariable("location") String location) {
+		EventAPI api = new EventBriteAPI(null);
+		ArrayList<Event> eventsList = api.getEvents(null);
+		return "test";
+		
+		
 	}
 
 	//Gets the user's name.
