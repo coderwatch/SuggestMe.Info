@@ -89,6 +89,33 @@
 			<artifactId>commons-io</artifactId>
 			<version>20030203.000550</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>com.github.scribejava</groupId>
+		    <artifactId>scribejava-apis</artifactId>
+		    <version>2.8.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.github.scribejava</groupId>
+		    <artifactId>scribejava-core</artifactId>
+		    <version>2.8.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20160212</version>
+		</dependency>
+		
+		<dependency>
+			  <groupId>org.apache.httpcomponents</groupId>
+			  <artifactId>httpclient</artifactId>
+			  <version>4.5.2</version>
+		</dependency>
+		
+		
 	</dependencies>
 	
 
