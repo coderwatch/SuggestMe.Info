@@ -97,12 +97,12 @@ public class WebController {
 		return user;
 	}
 	
+	
 	@RequestMapping(value = "/EventBrite/{location}", method = RequestMethod.GET)
 	String getEvents(@PathVariable("location") String location) {
 		EventAPI api = new EventBriteAPI(null);
 		ArrayList<Event> eventsList = api.getEvents(null);
 		return "test";
-		
 		
 	}
 
