@@ -63,20 +63,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   </head>
   <body>
-    <!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"> -->
     <div id="map"></div>
-    <p>Tutorial</p>
+    <h2>Tutorial</h2>
     <p>If you go to https://maps.googleapis.com/maps/api/place/textsearch/json?query=arcade+in+Los+Angeles&key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q you will get a json that is recorded in result.json. This is the result of a query for arcades in Los Angeles. The initMap function is then called (callback=initMap down below) where the map is initialized to the lat/lng of Los Angeles then for each establishment obtained from the textsearch api call is put onto the map by creating a marker object with the information of the establishment. Also clicking on each marker will display the info window (closes other open info windows).</p>
+    
+    <h2>HTML5 Geolocation Demo</h2>
+    <p id="demo">Click the button to get your position.</p>
+    <p id="myPos"></p>
+    <button onclick="getLocation()">Try It</button>
+
     <script>
-      // IGNORE*******
-      // This example adds a search box to a map, using the Google Place Autocomplete
-      // feature. People can enter geographical searches. The search box will return a
-      // pick list containing a mix of places and predicted search terms.
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 34.0522342, lng: -118.2436849},
@@ -84,108 +80,85 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-        // IGNORE********
-        // Create the search box and link it to the UI element.
-        // var input = document.getElementById('pac-input');
-        // var searchBox = new google.maps.places.SearchBox(input);
-        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        // map.addListener('bounds_changed', function() {
-        //   searchBox.setBounds(map.getBounds());
-        // });
-
         var markers = [], infoWindows = [];
         
 
         $.getJSON("result.json", function(json) {
-            if(json.status == "OK")
-            {
-              json.results.forEach(function(place){
-                console.log("found " + place.name);
-                var icon = {
-                  url: place.icon,
-                  size: new google.maps.Size(71, 71),
-                  origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(17, 34),
-                  scaledSize: new google.maps.Size(25, 25)
-                };
+          if(json.status == "OK") {
+            json.results.forEach(function(place){
+              console.log("found " + place.name);
+              var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+              };
 
-                // Create a marker for each place.
-                
-                var marker = new google.maps.Marker({
-                  map: map,
-                  title: place.name,
-                  position: place.geometry.location
-                });
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: place.name
-                });
-
-                marker.addListener('click', function() {
-                  infoWindow.open(map, marker);
-                  infoWindows.forEach(function(item){
-                    if(item.content!=infoWindow.content)
-                      item.close();
-                  });
-                });
-
-                
-
-                markers.push(marker);
-                infoWindows.push(infoWindow);
+              // Create a marker for each place.
+              
+              var marker = new google.maps.Marker({
+                map: map,
+                title: place.name,
+                position: place.geometry.location
               });
+
+              var infoWindow = new google.maps.InfoWindow({
+                  content: place.name
+              });
+
+              marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+                infoWindows.forEach(function(item){
+                  if(item.content!=infoWindow.content)
+                    item.close();
+                });
+              });
+
+              markers.push(marker);
+              infoWindows.push(infoWindow);
+            });
 
 
             }
         });
+      }
 
-      //   searchBox.addListener('places_changed', function() {
-      //     var places = searchBox.getPlaces();
 
-      //     if (places.length == 0) {
-      //       return;
-      //     }
 
-      //     // Clear out the old markers.
-      //     markers.forEach(function(marker) {
-      //       marker.setMap(null);
-      //     });
-      //     markers = [];
+      var x = document.getElementById("myPos");
+//  The navigator object contains information about the browser.
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+          } 
+          else { 
+              x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+      }
 
-      //     // For each place, get the icon, name and location.
-      //     var bounds = new google.maps.LatLngBounds();
-          // places.forEach(function(place) {
-          //   var icon = {
-          //     url: place.icon,
-          //     size: new google.maps.Size(71, 71),
-          //     origin: new google.maps.Point(0, 0),
-          //     anchor: new google.maps.Point(17, 34),
-          //     scaledSize: new google.maps.Size(25, 25)
-          //   };
+      function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+      }
 
-          //   // Create a marker for each place.
-          //   markers.push(new google.maps.Marker({
-          //     map: map,
-          //     icon: icon,
-          //     title: place.name,
-          //     position: place.geometry.location
-          //   }));
-
-          //   if (place.geometry.viewport) {
-          //     // Only geocodes have viewport.
-          //     bounds.union(place.geometry.viewport);
-          //   } else {
-          //     bounds.extend(place.geometry.location);
-          //   }
-          // });
-      //     map.fitBounds(bounds);
-      //   });
+      function showError(error) {
+          switch(error.code) {
+              case error.PERMISSION_DENIED:
+                  x.innerHTML = "User denied the request for Geolocation."
+                  break;
+              case error.POSITION_UNAVAILABLE:
+                  x.innerHTML = "Location information is unavailable."
+                  break;
+              case error.TIMEOUT:
+                  x.innerHTML = "The request to get user location timed out."
+                  break;
+              case error.UNKNOWN_ERROR:
+                  x.innerHTML = "An unknown error occurred."
+                  break;
+          }
       }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=initMap"
-         async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=initMap" async defer></script>
   </body>
 </html>
