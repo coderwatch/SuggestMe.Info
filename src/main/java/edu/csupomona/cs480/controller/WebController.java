@@ -72,6 +72,20 @@ public class WebController {
 		//returns html text
 		return "<h1>Test Page</h1><a href=\"http://corgiorgy.com/\"><img src=\"http://45.media.tumblr.com/d9638010e1374a54620dbe2cd847f647/tumblr_o52vjkloZo1rnhl8xo1_500.gif\"></a><br><b>Test</b> ";
 	}
+	
+	@RequestMapping("/testjson")
+	String testJSON() {
+		
+		String myJSON="";
+		try{
+			myJSON=Jsoup.connect("https://maps.googleapis.com/maps/api/place/textsearch/json?query=arcade+in+Los+Angeles&key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q").ignoreContentType(true).execute().body();
+		}
+		catch(IOException e)
+		{
+			
+		}
+		return myJSON;
+	}
 
 	@RequestMapping(value = "/cs480/ping", method = RequestMethod.GET)
 	String healthCheck() {
