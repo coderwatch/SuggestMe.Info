@@ -235,11 +235,6 @@ public class WebController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/cs480/toni", method = RequestMethod.GET)
-	String toni(){
-		return "toni is testing";
-	}
-
 	@RequestMapping(value = "/cs480/google", method = RequestMethod.GET)
 	String google(){
 		String answer = null;
