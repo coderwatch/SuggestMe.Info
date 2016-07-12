@@ -3,12 +3,9 @@ package edu.csupomona.cs480.API.LocationAPI;
 
 ////////////LIBRARIES//////////////////////
 import java.io.IOException;
-import java.util.ArrayList;
 import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.builder.api.BaseApi;
 import com.github.scribejava.core.oauth.OAuth10aService;
 import com.github.scribejava.core.model.*;
-import edu.csupomona.cs480.location.Location;
 //////////////////////////////////////////
 
 public class YelpAPI{
