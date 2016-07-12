@@ -4,7 +4,7 @@ import java.io.IOException;
 import edu.csupomona.cs480.API.LocationAPI.YelpAPI;
 import org.junit.*;
 
-public class Yelptest {
+public class YelpAPItest {
 	private static YelpAPI yelp = new YelpAPI();
 	
 	//test yelp
