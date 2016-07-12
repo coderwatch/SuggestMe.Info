@@ -1,9 +1,6 @@
 package edu.csupomona.cs480.controller;
 
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 //////////////////////////////////////////////////////////////////
 //////////////////////LIBRARIES///////////////////////////////////
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.csupomona.cs480.App;
+import edu.csupomona.cs480.API.LocationAPI.*;
 import edu.csupomona.cs480.APIs.EventAPI.EventAPI;
 import edu.csupomona.cs480.APIs.EventAPI.EventBriteAPI;
 import edu.csupomona.cs480.Events.Event;
@@ -26,9 +24,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import com.google.common.base.Joiner;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.math.fraction.Fraction;
 
@@ -104,6 +103,13 @@ public class WebController {
 		ArrayList<Event> eventsList = api.getEvents(null);
 		return "test";
 		
+	}
+	
+	@RequestMapping(value = "/Yelp/{location}", method = RequestMethod.GET)
+	String getLocation(@PathVariable("location") String location){
+		LocationAPI yelp = new YelpAPI(location);
+		
+		return location;
 	}
 
 	//Gets the user's name.
