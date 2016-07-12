@@ -14,7 +14,7 @@ public class YelpAPI{
 	private final static String Consumer_Key = "xr2AGjpXyVFSqOFZjukQjg";
 	private final static String Consumer_Secret = "LWKk-n_sXFJtpSxFvyNOK4yIChA";
 	private final static String PROTECTED_RESOURCE_URL = "https://api.yelp.com/v2/search";
-	//private String location = "";
+	private String location = "";
 	private final static String Token = "eT__OvmM5po3P9-HdGkux50Y7cL7Nhi_";
 	private final static String Token_Secret = "rZYKnrojkpmQlOb2xg5izVpLVE4";
 	
@@ -35,11 +35,11 @@ public class YelpAPI{
 		Response response = request.send();
 		System.out.println(response.getBody());
 	}
-	/*
+	
 	public void setLocation(String location){
 		this.location = location;
 	}
-	*/
+	
 
 	public String jsonstring() {
 
@@ -50,7 +50,7 @@ public class YelpAPI{
 			final OAuth1AccessToken accessToken = service.getAccessToken(requestToken, oauthVerifier);
 			final OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
 			request.addQuerystringParameter("term", "food");
-			request.addQuerystringParameter("location", "Pomona,CA");
+			request.addQuerystringParameter("location", location);
 			service.signRequest(accessToken, request);
 			final Response response = request.send();
 			returnString = response.getBody();

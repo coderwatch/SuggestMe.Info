@@ -32,7 +32,7 @@ public class Event{
 	}
 
 	public void setState(String state) {
-		state = state;
+		this.state = state;
 	}
 
 	public String getCity() {
