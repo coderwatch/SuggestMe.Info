@@ -15,7 +15,8 @@ public class EventBriteAPI implements EventAPI {
 	//private String applicationKey = "HUOIULLDRP7H3JQ6H5";
 	private Location location;
 	private RestTemplate restTemplate = new RestTemplate();
-	private UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
+	public boolean testFlag = true;
+	public UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
 	public EventBriteAPI(Location location){
 		setLocation(location);
 		builder.scheme("http");
@@ -38,8 +39,6 @@ public class EventBriteAPI implements EventAPI {
 		builder.queryParam("location.latitude", "34.0565");
 		builder.queryParam("location.longitude", "117.8215");
 		builder.build();
-	
-		
 		return null;
 	}
 }
