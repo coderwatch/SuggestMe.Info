@@ -20,14 +20,15 @@ public class jSoupAPI {
 	patternDomainName = Pattern.compile(DOMAIN_NAME_PATTERN);
   }
 	
-  public static void main(String[] args) {
+  public String jSoup(){
 
 	jSoupAPI obj = new jSoupAPI();
-	Set<String> result = obj.getDataFromGoogle("pasta");
+	Set<String> result = obj.getDataFromGoogle("Laser Tag");
+	String returnString = "";
 	for(String temp : result){
-		System.out.println(temp);
+		returnString += temp + "\n";
 	}
-	System.out.println(result.size());
+	return returnString;
   }
 
   public String getDomainName(String url){
@@ -69,7 +70,7 @@ public class jSoupAPI {
 		}
 
 	} catch (IOException e) {
-		e.printStackTrace();
+		System.out.println("e.printStackTrace()");
 	}
 		
 	return result;
