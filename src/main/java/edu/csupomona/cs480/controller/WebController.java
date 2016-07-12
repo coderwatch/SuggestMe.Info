@@ -119,14 +119,13 @@ public class WebController {
 		
 	}
 	
-	@RequestMapping(value = "/yelp", method = RequestMethod.GET)
-	String getLocation(){
-		String location= "Pomona, CA";
-		/*
-		 * 
-		 * Yelp API code
-		 */
-		return location;
+	//<!------Using Yelp API------->
+	@RequestMapping(value = "/food/{location}", method = RequestMethod.GET)
+	String getLocation(@PathVariable("location") String location) throws IOException{
+		YelpAPI yelp = new YelpAPI();
+		yelp.setLocation(location);
+		String jsonresponse = yelp.jsonresponse();
+		return jsonresponse;
 	}
 
 	//Gets the user's name.
