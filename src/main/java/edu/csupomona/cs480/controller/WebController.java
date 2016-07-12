@@ -119,10 +119,13 @@ public class WebController {
 		
 	}
 	
-	@RequestMapping(value = "/Yelp/{location}", method = RequestMethod.GET)
-	String getLocation(@PathVariable("location") String location){
-		LocationAPI yelp = new YelpAPI(location);
-		
+	@RequestMapping(value = "/yelp", method = RequestMethod.GET)
+	String getLocation(){
+		String location= "Pomona, CA";
+		/*
+		 * 
+		 * Yelp API code
+		 */
 		return location;
 	}
 
