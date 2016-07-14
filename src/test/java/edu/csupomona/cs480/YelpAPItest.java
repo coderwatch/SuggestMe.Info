@@ -10,19 +10,19 @@ public class YelpAPItest {
 	//test yelp
 	public static void main(String[] args) throws IOException{
 	yelp.setLocation("Pomona, CA");
-	yelp.testrun();
+	System.out.println(yelp.jsonresponse());
 	}
 	
 	@Test
 	public void testlocation1() throws IOException{
 		yelp.setLocation("Los Angeles, CA");
-		yelp.testrun();
+		System.out.println(yelp.jsonresponse());
 	}
 	
 	@Test
 	public void testlocation2()throws IOException{
 		yelp.setLocation("San Diego, CA");
-		yelp.testrun();
+		System.out.println(yelp.jsonresponse());
 	}
 
 }
