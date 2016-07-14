@@ -1,3 +1,8 @@
+
+SuggestMe.Info
+--------
+A web application made by Coderwatch that will give the user a random suggestion of where to eat, what to cook, where to explore, and what to read
+
 Overview
 --------
 test for jenkins
