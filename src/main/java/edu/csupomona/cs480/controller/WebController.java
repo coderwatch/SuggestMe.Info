@@ -30,6 +30,7 @@ import java.util.List;
 import com.google.common.base.Joiner;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.math.fraction.Fraction;
+import org.json.JSONObject;
 
 import java.io.*;
 ///////////////////////////////////////////////////////////////////
@@ -72,7 +73,7 @@ public class WebController {
 		return "<h1>Test Page</h1><a href=\"http://corgiorgy.com/\"><img src=\"http://45.media.tumblr.com/d9638010e1374a54620dbe2cd847f647/tumblr_o52vjkloZo1rnhl8xo1_500.gif\"></a><br><b>Test</b> ";
 	}
 	
-	@RequestMapping("/testjson")
+	@RequestMapping(value = "/testjson", method = RequestMethod.GET)
 	String testJSON() {
 		
 		String myJSON="";
@@ -83,6 +84,7 @@ public class WebController {
 		{
 			
 		}
+//		return new JSONObject(myJSON);
 		return myJSON;
 	}
 
