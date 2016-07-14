@@ -129,6 +129,16 @@ public class WebController {
 		String jsonresponse = yelp.jsonresponse();
 		return jsonresponse;
 	}
+	//Yelp Test with Longitude and Latitude
+	@RequestMapping(value = "/food/{Longitude}/{Latitude}", method = RequestMethod.GET)
+	String getLocationLL(@PathVariable("Longitude") String Longitude, 
+						@PathVariable("Latitude") String Latitude) throws IOException{
+		String LL = Longitude +","+Latitude;
+		YelpAPI yelp = new YelpAPI();
+		yelp.setLocation(LL);
+		String jsonresponse = yelp.jsonresponse();
+		return jsonresponse;
+	}
 
 	//Gets the user's name.
 	@RequestMapping(value = "/cs480/user/name/{userId}", method = RequestMethod.GET)
