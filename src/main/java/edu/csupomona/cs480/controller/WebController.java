@@ -130,13 +130,13 @@ public class WebController {
 		return jsonresponse;
 	}
 	//Yelp Test with Longitude and Latitude
-	@RequestMapping(value = "/food/{Longitude}/{Latitude}", method = RequestMethod.GET)
-	String getLocationLL(@PathVariable("Longitude") String Longitude, 
-						@PathVariable("Latitude") String Latitude) throws IOException{
-		String LL = Longitude +","+Latitude;
+	@RequestMapping(value = "/food/{Latitude}/{Longitude}", method = RequestMethod.GET)
+	String getLocationLL(@PathVariable("Latitude") String Latitude, 
+						@PathVariable("Longitude") String Longitude) throws IOException{
+		String LL = Latitude +","+Longitude;
 		YelpAPI yelp = new YelpAPI();
-		yelp.setLocation(LL);
-		String jsonresponse = yelp.jsonresponse();
+		yelp.setLL(LL);
+		String jsonresponse = yelp.lnljson();
 		return jsonresponse;
 	}
 
