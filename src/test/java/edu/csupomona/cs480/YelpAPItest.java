@@ -1,10 +1,13 @@
 package edu.csupomona.cs480;
 
+/*
 import java.io.IOException;
 import edu.csupomona.cs480.API.LocationAPI.YelpAPI;
 import org.junit.*;
+*/
 
 public class YelpAPItest {
+	/*
 	private static YelpAPI yelp = new YelpAPI();
 	
 	//test yelp
@@ -24,5 +27,6 @@ public class YelpAPItest {
 		yelp.setLocation("San Diego, CA");
 		System.out.println(yelp.jsonresponse());
 	}
+	*/
 
 }
