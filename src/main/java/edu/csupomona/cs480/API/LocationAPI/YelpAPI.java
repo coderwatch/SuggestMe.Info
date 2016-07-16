@@ -53,6 +53,7 @@ public class YelpAPI{
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
 		request.addQuerystringParameter("term", "food");
 		request.addQuerystringParameter("ll", LL);
+		request.addQuerystringParameter("limit", String.valueOf(4));
 		this.service.signRequest(this.accessToken, request);
 		Response response = request.send();
 		jsonString = response.getBody();

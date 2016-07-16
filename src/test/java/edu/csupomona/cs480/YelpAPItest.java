@@ -14,7 +14,11 @@ public class YelpAPItest {
 	
 	//test yelp
 	public static void main(String[] args) throws IOException{
-	yelp.setLL("37.788022,-122.399797");
+	String lat = "34.0551";
+	String longitude = "-117.7500";
+	String LL = lat + ","+longitude;
+	yelp.setLL(LL);
+	//34.0551, 117.7500
 	System.out.println(yelp.lnljson());
 	}
 	/*
