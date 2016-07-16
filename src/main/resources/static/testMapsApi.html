@@ -69,8 +69,6 @@
     <p>If you go to https://maps.googleapis.com/maps/api/place/textsearch/json?query=arcade+in+Los+Angeles&key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q you will get a json that is recorded in result.json. This is the result of a query for arcades in Los Angeles. The initMap function is then called (callback=initMap down below) where the map is initialized to the lat/lng of Los Angeles then for each establishment obtained from the textsearch api call is put onto the map by creating a marker object with the information of the establishment. Also clicking on each marker will display the info window (closes other open info windows).</p>
     
     <h2>HTML5 Geolocation Demo</h2>
-    <p id="demo">Click the button to get your position.</p>
-    <p id="myPos"></p>
     <button onclick="getLocation()">Try It</button>
 
     <button id="yelp" onclick="updateMapYelp()">Test Yelp</button>

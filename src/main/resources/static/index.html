@@ -78,25 +78,28 @@
                 </div>
             </div>
             <div class="row">
-                <!-- <div class="col-sm-4 portfolio-item">
+                 <div class="col-lg-6 portfolio-item">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/cabin.png" class="img-responsive" alt="">
+                        <img src="images/restaurants.png" class="img-responsive" alt="">
                     </a>
-                </div>-->
+                </div>
 
 
 
-                <div class="col-lg-6 portfolio-item text-center">
+                <!-- <div class="col-lg-6 portfolio-item text-center">
                     <p>Ever had trouble deciding where to go to eat?</p>
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                     <form action="/testjson" method="get">
+                        <button id="yelp" onclick="updateMapYelp()">Test Yelp</button>
                         <button type="submit" class="btn btn-info btn-lg btn-block"><strong>SuggestMe a place to eat </strong><img src="images/restaurants.png" class="img-responsive center-block"></img></button>
                     </form>
-                </div>
+                    </a>
+                </div> -->
                 <div class="col-lg-6 portfolio-item text-center">
                     <p>Wanna know about cool local events you might be missing?</p>
                     <form action="/testjson" method="get">
@@ -279,15 +282,16 @@
     </div> -->
 
     <!-- Portfolio Modals -->
-    <!-- <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
+                <!-- x on top right to close window -->
                 <div class="lr">
                     <div class="rl">
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <!-- <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
@@ -313,10 +317,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -500,7 +504,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>  -->
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -518,6 +522,11 @@
 
     <!-- Theme JavaScript -->
     <script src="js/freelancer.js"></script>
+
+    
+    <!-- Script for google maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=initMap" async defer></script>
+    <script src="./js/testMapsApi.js"></script>
 
 </body>
 

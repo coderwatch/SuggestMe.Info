@@ -184,7 +184,6 @@ function deleteMarkers() {
     markers = [];
 }
 
-// var x = document.getElementById("myPos");
 //  The navigator object contains information about the browser.
 function initMapOnUserLocation() {
     if (navigator.geolocation) {
@@ -211,10 +210,6 @@ function errorGeolocation(error)
   alert('ERROR(' + error.code + '): ' + error.message);
 }
 
-// function showPosition(position) {
-//     x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-// }
-
 function showError(error) {
     switch(error.code) {
         case error.PERMISSION_DENIED:
@@ -235,8 +230,7 @@ function showError(error) {
 $('#yelp').click(function() {
   
     $.ajax({
-        // TODO: lat before long?
-        url: "/food/" + userLat + "/" + userLng,
+        url: "/food/" + userLat + "/" + userLng + "/",
         type:'GET',
         success: function(jsonResp)
         {
