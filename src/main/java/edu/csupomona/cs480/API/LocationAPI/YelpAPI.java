@@ -17,6 +17,7 @@ public class YelpAPI{
 	private final static String Token = "eT__OvmM5po3P9-HdGkux50Y7cL7Nhi_";
 	private final static String Token_Secret = "rZYKnrojkpmQlOb2xg5izVpLVE4";
 	private String location = "";
+	private String LL = "";
 	//<--------------------->
 	final OAuth10aService service;
 	OAuth1AccessToken accessToken;
@@ -27,6 +28,10 @@ public class YelpAPI{
 	
 	public void setLocation(String location){
 		this.location = location;
+	}
+	
+	public void setLL(String LL){
+		this.LL = LL;
 	}
 
 	public String jsonresponse() throws IOException {
@@ -40,7 +45,20 @@ public class YelpAPI{
 		Response response = request.send();
 		jsonString = response.getBody();
 		return jsonString;
+	}
+	
+	public String lnljson() throws IOException{
+		String jsonString = null;
+		this.accessToken = new OAuth1AccessToken(Token, Token_Secret);
+		OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
+		request.addQuerystringParameter("term", "food");
+		request.addQuerystringParameter("ll", LL);
+		this.service.signRequest(this.accessToken, request);
+		Response response = request.send();
+		jsonString = response.getBody();
+		return jsonString;
 		
+	}
 		/*
 		public void testrun() throws IOException{
 			this.accessToken = new OAuth1AccessToken(Token, Token_Secret);
@@ -53,7 +71,5 @@ public class YelpAPI{
 			System.out.println(response.getBody());
 		}
 		*/
-		
-	}
 
 }

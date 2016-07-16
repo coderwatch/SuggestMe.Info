@@ -61,6 +61,7 @@
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   </head>
   <body>
     <div id="map"></div>
@@ -72,148 +73,11 @@
     <p id="myPos"></p>
     <button onclick="getLocation()">Try It</button>
 
-    <p id="test">test</p>
-
-    <script>
+    <button id="yelp" onclick="updateMapYelp()">Test Yelp</button>
+    <button id="google" onclick="updateMapGoogle()">Test Google Search</button>
 
     
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 34.0522342, lng: -118.2436849},
-          zoom: 13,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-
-        var markers = [], infoWindows = [];
-        
-        // $( "#test" ).load( "ajax/http://localhost:8080/cs480/google" );
-        // function callback(){
-        //   $("#test").text("hi");
-        // }
-        // function httpGetAsync(theUrl, callback)
-        // {
-        //     var xmlHttp = new XMLHttpRequest();
-        //     xmlHttp.onreadystatechange = function() { 
-        //         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        //             callback(xmlHttp.responseText);
-        //     }
-        //     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-        //     xmlHttp.send(null);
-        //     console.log(xhr.response);
-        //     console.log(xhr.responseText);
-        // }
-        // console.log(httpGetAsync("http://localhost:8080/cs480/google", callback()));
-
-
-        // var xhr = new XMLHttpRequest();
-        // xhr.open('GET', '/sway', true);
-
-        // // If specified, responseType must be empty string or "text"
-        // xhr.responseType = 'text';
-
-        // xhr.onload = function () {
-        //     if (xhr.readyState === xhr.DONE) {
-        //         if (xhr.status === 200) {
-        //             console.log(xhr.response);
-        //             console.log(xhr.responseText);
-        //         }
-        //     }
-        // };
-        // $.getJSON('http://anyorigin.com/get?url=https%3A//maps.googleapis.com/maps/api/place/textsearch/json%3Fquery%3Darcade+in+Los+Angeles%26key%3DAIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&callback=?', function(data){
-        //   $('#output').html(data.contents);
-        // });
-        // function loadDoc() {
-        //   var xhttp = new XMLHttpRequest();
-        //   xhttp.onreadystatechange = function() {
-        //     if (xhttp.readyState == 4 && xhttp.status == 200) {
-        //       document.getElementById("test").innerHTML = xhttp.responseText;
-        //       alert("success");
-        //     }
-        //   };
-        //   xhttp.open("GET", "test", true);
-        //   xhttp.send();
-        // }
-        // loadDoc();
-        $.get("testjson", function(data){
-            alert("data");
-        });
-
-        $.getJSON("result.json", function(json) {
-          if(json.status == "OK") {
-            json.results.forEach(function(place){
-              // console.log("found " + place.name);
-              var icon = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-              };
-
-              // Create a marker for each place.
-              
-              var marker = new google.maps.Marker({
-                map: map,
-                title: place.name,
-                position: place.geometry.location
-              });
-
-              var infoWindow = new google.maps.InfoWindow({
-                  content: place.name
-              });
-
-              marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-                infoWindows.forEach(function(item){
-                  if(item.content!=infoWindow.content)
-                    item.close();
-                });
-              });
-
-              markers.push(marker);
-              infoWindows.push(infoWindow);
-            });
-
-
-            }
-        });
-      }
-
-
-
-      var x = document.getElementById("myPos");
-//  The navigator object contains information about the browser.
-      function getLocation() {
-          if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(showPosition);
-          } 
-          else { 
-              x.innerHTML = "Geolocation is not supported by this browser.";
-          }
-      }
-
-      function showPosition(position) {
-          x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-      }
-
-      function showError(error) {
-          switch(error.code) {
-              case error.PERMISSION_DENIED:
-                  x.innerHTML = "User denied the request for Geolocation."
-                  break;
-              case error.POSITION_UNAVAILABLE:
-                  x.innerHTML = "Location information is unavailable."
-                  break;
-              case error.TIMEOUT:
-                  x.innerHTML = "The request to get user location timed out."
-                  break;
-              case error.UNKNOWN_ERROR:
-                  x.innerHTML = "An unknown error occurred."
-                  break;
-          }
-      }
-
-    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=initMap" async defer></script>
+    <script src="./js/testMapsApi.js"></script>
   </body>
 </html>

@@ -1,0 +1,219 @@
+{
+    "region":{
+        "span":{
+            "latitude_delta":0.024321330000006,
+            "longitude_delta":0.035417699641499
+        },
+        "center":{
+            "latitude":34.08740115,
+            "longitude":-118.14192004562
+        }
+    },
+    "total":17013,
+    "businesses":[
+        {
+            "is_claimed":true,
+            "rating":4.5,
+            "mobile_url":"http:\/\/m.yelp.com\/biz\/spanglish-kitchen-alhambra-2?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "rating_img_url":"https:\/\/s3-media2.fl.yelpcdn.com\/assets\/2\/www\/img\/99493c12711e\/ico\/stars\/v1\/stars_4_half.png",
+            "review_count":156,
+            "name":"Spanglish Kitchen",
+            "rating_img_url_small":"https:\/\/s3-media2.fl.yelpcdn.com\/assets\/2\/www\/img\/a5221e66bc70\/ico\/stars\/v1\/stars_small_4_half.png",
+            "url":"http:\/\/www.yelp.com\/biz\/spanglish-kitchen-alhambra-2?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "categories":[
+                [
+                    "Mexican",
+                    "mexican"
+                ]
+            ],
+            "phone":"6265890482",
+            "snippet_text":"You have to try the carnitas tacos! Prob one of the best tacos ive had in my life! The asada tacos are really good too. Their chips are crispy and gauc is...",
+            "image_url":"https:\/\/s3-media3.fl.yelpcdn.com\/bphoto\/hRE6agNRFrDKbp62JPhdYQ\/ms.jpg",
+            "snippet_image_url":"http:\/\/s3-media4.fl.yelpcdn.com\/photo\/Qh8EERpaVfgYRCnvxCtk7g\/ms.jpg",
+            "display_phone":"+1-626-589-0482",
+            "rating_img_url_large":"https:\/\/s3-media4.fl.yelpcdn.com\/assets\/2\/www\/img\/9f83790ff7f6\/ico\/stars\/v1\/stars_large_4_half.png",
+            "id":"spanglish-kitchen-alhambra-2",
+            "is_closed":false,
+            "location":{
+                "city":"Alhambra",
+                "display_address":[
+                    "526 N Atlantic Blvd",
+                    "Alhambra",
+                    "Alhambra, CA 91801"
+                ],
+                "geo_accuracy":8,
+                "neighborhoods":[
+                    "Alhambra"
+                ],
+                "postal_code":"91801",
+                "country_code":"US",
+                "address":[
+                    "526 N Atlantic Blvd"
+                ],
+                "coordinate":{
+                    "latitude":34.098556518555,
+                    "longitude":-118.13438415527
+                },
+                "state_code":"CA"
+            }
+        },
+        {
+            "is_claimed":true,
+            "rating":4,
+            "mobile_url":"http:\/\/m.yelp.com\/biz\/grill-em-all-alhambra-2?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "rating_img_url":"https:\/\/s3-media4.fl.yelpcdn.com\/assets\/2\/www\/img\/c2f3dd9799a5\/ico\/stars\/v1\/stars_4.png",
+            "review_count":1742,
+            "name":"Grill 'Em All",
+            "rating_img_url_small":"https:\/\/s3-media4.fl.yelpcdn.com\/assets\/2\/www\/img\/f62a5be2f902\/ico\/stars\/v1\/stars_small_4.png",
+            "url":"http:\/\/www.yelp.com\/biz\/grill-em-all-alhambra-2?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "categories":[
+                [
+                    "Burgers",
+                    "burgers"
+                ],
+                [
+                    "American (New)",
+                    "newamerican"
+                ],
+                [
+                    "Fast Food",
+                    "hotdogs"
+                ]
+            ],
+            "menu_date_updated":1460982258,
+            "phone":"6262842874",
+            "snippet_text":"Guys - meat plus cheese will equal grease. It's a burger, not a kale salad.\nNow, that we've gotten that out of the way, I can begin my review: \n\nYou walk in...",
+            "image_url":"https:\/\/s3-media3.fl.yelpcdn.com\/bphoto\/nXRZr1FNUamb2YkFIssIGA\/ms.jpg",
+            "snippet_image_url":"http:\/\/s3-media3.fl.yelpcdn.com\/photo\/UsWNjf9F7rVR149n0rrZPw\/ms.jpg",
+            "display_phone":"+1-626-284-2874",
+            "rating_img_url_large":"https:\/\/s3-media2.fl.yelpcdn.com\/assets\/2\/www\/img\/ccf2b76faa2c\/ico\/stars\/v1\/stars_large_4.png",
+            "menu_provider":"single_platform",
+            "id":"grill-em-all-alhambra-2",
+            "is_closed":false,
+            "location":{
+                "city":"Alhambra",
+                "display_address":[
+                    "19 E Main St",
+                    "Alhambra",
+                    "Alhambra, CA 91801"
+                ],
+                "geo_accuracy":9.5,
+                "neighborhoods":[
+                    "Alhambra"
+                ],
+                "postal_code":"91801",
+                "country_code":"US",
+                "address":[
+                    "19 E Main St"
+                ],
+                "coordinate":{
+                    "latitude":34.095778,
+                    "longitude":-118.126545
+                },
+                "state_code":"CA"
+            }
+        },
+        {
+            "is_claimed":true,
+            "rating":4.5,
+            "mobile_url":"http:\/\/m.yelp.com\/biz\/banh-mi-my-tho-alhambra?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "rating_img_url":"https:\/\/s3-media2.fl.yelpcdn.com\/assets\/2\/www\/img\/99493c12711e\/ico\/stars\/v1\/stars_4_half.png",
+            "review_count":1163,
+            "name":"Banh Mi My Tho",
+            "rating_img_url_small":"https:\/\/s3-media2.fl.yelpcdn.com\/assets\/2\/www\/img\/a5221e66bc70\/ico\/stars\/v1\/stars_small_4_half.png",
+            "url":"http:\/\/www.yelp.com\/biz\/banh-mi-my-tho-alhambra?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "categories":[
+                [
+                    "Sandwiches",
+                    "sandwiches"
+                ],
+                [
+                    "Vietnamese",
+                    "vietnamese"
+                ],
+                [
+                    "Coffee & Tea",
+                    "coffee"
+                ]
+            ],
+            "phone":"6262894160",
+            "snippet_text":"Killer food and killer deals\n\n\nLong wait tho",
+            "image_url":"https:\/\/s3-media4.fl.yelpcdn.com\/bphoto\/DhA1vWL5l-geQuTOZo6p3g\/ms.jpg",
+            "snippet_image_url":"http:\/\/s3-media1.fl.yelpcdn.com\/photo\/Gx28Imcv0wXWqi5e4J6Irw\/ms.jpg",
+            "display_phone":"+1-626-289-4160",
+            "rating_img_url_large":"https:\/\/s3-media4.fl.yelpcdn.com\/assets\/2\/www\/img\/9f83790ff7f6\/ico\/stars\/v1\/stars_large_4_half.png",
+            "id":"banh-mi-my-tho-alhambra",
+            "is_closed":false,
+            "location":{
+                "city":"Alhambra",
+                "display_address":[
+                    "304 W Valley Blvd",
+                    "Alhambra",
+                    "Alhambra, CA 91803"
+                ],
+                "geo_accuracy":9.5,
+                "neighborhoods":[
+                    "Alhambra"
+                ],
+                "postal_code":"91803",
+                "country_code":"US",
+                "address":[
+                    "304 W Valley Blvd"
+                ],
+                "coordinate":{
+                    "latitude":34.077965105676,
+                    "longitude":-118.12582109123
+                },
+                "state_code":"CA"
+            }
+        },
+        {
+            "is_claimed":true,
+            "rating":4,
+            "mobile_url":"http:\/\/m.yelp.com\/biz\/aloha-food-factory-alhambra?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "rating_img_url":"https:\/\/s3-media4.fl.yelpcdn.com\/assets\/2\/www\/img\/c2f3dd9799a5\/ico\/stars\/v1\/stars_4.png",
+            "review_count":774,
+            "name":"Aloha Food Factory",
+            "rating_img_url_small":"https:\/\/s3-media4.fl.yelpcdn.com\/assets\/2\/www\/img\/f62a5be2f902\/ico\/stars\/v1\/stars_small_4.png",
+            "url":"http:\/\/www.yelp.com\/biz\/aloha-food-factory-alhambra?utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=xr2AGjpXyVFSqOFZjukQjg",
+            "categories":[
+                [
+                    "Hawaiian",
+                    "hawaiian"
+                ]
+            ],
+            "menu_date_updated":1441917466,
+            "phone":"6263080215",
+            "snippet_text":"OMG I drive past this restaurant so many times for so many years..... I didn't even know how good it was until one day I decided to try this place with my...",
+            "image_url":"https:\/\/s3-media2.fl.yelpcdn.com\/bphoto\/ePhXtNYF1l1VTQKsg_M17A\/ms.jpg",
+            "snippet_image_url":"http:\/\/s3-media2.fl.yelpcdn.com\/photo\/oiHy1Atf6OSziS-Mk-dIvA\/ms.jpg",
+            "display_phone":"+1-626-308-0215",
+            "rating_img_url_large":"https:\/\/s3-media2.fl.yelpcdn.com\/assets\/2\/www\/img\/ccf2b76faa2c\/ico\/stars\/v1\/stars_large_4.png",
+            "menu_provider":"single_platform",
+            "id":"aloha-food-factory-alhambra",
+            "is_closed":false,
+            "location":{
+                "city":"Alhambra",
+                "display_address":[
+                    "2990 W Valley Blvd",
+                    "Alhambra",
+                    "Alhambra, CA 91803"
+                ],
+                "geo_accuracy":9.5,
+                "neighborhoods":[
+                    "Alhambra"
+                ],
+                "postal_code":"91803",
+                "country_code":"US",
+                "address":[
+                    "2990 W Valley Blvd"
+                ],
+                "coordinate":{
+                    "latitude":34.076346,
+                    "longitude":-118.158019
+                },
+                "state_code":"CA"
+            }
+        }
+    ]
+}
