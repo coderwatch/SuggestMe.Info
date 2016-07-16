@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import edu.csupomona.cs480.APIs.EventAPI.EventBriteAPI;
-import edu.csupomona.cs480.Events.Event;
+import edu.csupomona.cs480.API.EventAPI.*;
 
 public class EventBriteAPITest{
 
