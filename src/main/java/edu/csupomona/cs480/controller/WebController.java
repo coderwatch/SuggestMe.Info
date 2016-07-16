@@ -15,8 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.API.LocationAPI.*;
-import edu.csupomona.cs480.APIs.EventAPI.EventAPI;
-import edu.csupomona.cs480.APIs.EventAPI.EventBriteAPI;
+import edu.csupomona.cs480.API.EventAPI.EventAPI;
+import edu.csupomona.cs480.API.EventAPI.EventBriteAPI;
 import edu.csupomona.cs480.Events.Event;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;

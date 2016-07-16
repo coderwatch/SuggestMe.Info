@@ -1,4 +1,4 @@
-   package edu.csupomona.cs480.APIs.EventAPI;
+   package edu.csupomona.cs480.API.EventAPI;
 
 import java.util.ArrayList;
 
