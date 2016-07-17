@@ -11,22 +11,24 @@
     //     }, 1250, 'easeInOutExpo');
     //     event.preventDefault();
     // });
-    var $root = $('html, body');
-    $('a').click(function() {
-        var href = $.attr(this, 'href');
-        $root.animate({
-            scrollTop: $(href).offset().top
-        }, 500, function () {
-            window.location.hash = href;
-        });
-        return false;
-    });
+
+    // Alternative
+    // var $root = $('html, body');
+    // $('a').click(function() {
+    //     var href = $.attr(this, 'href');
+    //     $root.animate({
+    //         scrollTop: $(href).offset().top
+    //     }, 500, function () {
+    //         window.location.hash = href;
+    //     });
+    //     return false;
+    // });
 
     // Highlight the top nav as scrolling occurs
-    $('body').scrollspy({
-        target: '.navbar-fixed-top',
-        offset: 51
-    });
+    // $('body').scrollspy({
+    //     target: '.navbar-fixed-top',
+    //     offset: 51
+    // });
 
     // Closes the Responsive Menu on Menu Item Click
     $('.navbar-collapse ul li a:not(.dropdown-toggle)').click(function() {
@@ -41,29 +43,30 @@
     })
 
     // Floating label headings for the contact form
-    $(function() {
-        $("body").on("input propertychange", ".floating-label-form-group", function(e) {
-            $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
-        }).on("focus", ".floating-label-form-group", function() {
-            $(this).addClass("floating-label-form-group-with-focus");
-        }).on("blur", ".floating-label-form-group", function() {
-            $(this).removeClass("floating-label-form-group-with-focus");
-        });
-    });
+    // $(function() {
+    //     $("body").on("input propertychange", ".floating-label-form-group", function(e) {
+    //         $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
+    //     }).on("focus", ".floating-label-form-group", function() {
+    //         $(this).addClass("floating-label-form-group-with-focus");
+    //     }).on("blur", ".floating-label-form-group", function() {
+    //         $(this).removeClass("floating-label-form-group-with-focus");
+    //     });
+    // });
 
-    $(".nav > li > a").click(function(){
-        // $(".top-btn").removeClass("hidden");
-        var current = $(this);
-        var name = current.attr('href');
+    // for return to top button (no longer used)
+    // $(".nav > li > a").click(function(){
+    //     // $(".top-btn").removeClass("hidden");
+    //     var current = $(this);
+    //     var name = current.attr('href');
 
-        //Remove from current, add hidden to all others
-        $(".top-btn").addClass('hidden');
-        $(name + " > div > a").removeClass("hidden");
+    //     //Remove from current, add hidden to all others
+    //     $(".top-btn").addClass('hidden');
+    //     $(name + " > div > a").removeClass("hidden");
 
-    });
+    // });
 
-    $('.top-btn').click(function(){
-        $('.top-btn').addClass('hidden');
-    });
+    // $('.top-btn').click(function(){
+    //     $('.top-btn').addClass('hidden');
+    // });
 
 })(jQuery); // End of use strict

@@ -32,6 +32,9 @@ function successGeolocation(position)
   map.setCenter(new google.maps.LatLng(userLat, userLng));
   map.setZoom(13);
   map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+  map.setOptions({
+    draggable: false
+  });
 }
 
 function errorGeolocation(error)
