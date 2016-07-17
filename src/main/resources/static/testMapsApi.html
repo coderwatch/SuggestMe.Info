@@ -69,13 +69,14 @@
     <p>If you go to https://maps.googleapis.com/maps/api/place/textsearch/json?query=arcade+in+Los+Angeles&key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q you will get a json that is recorded in result.json. This is the result of a query for arcades in Los Angeles. The initMap function is then called (callback=initMap down below) where the map is initialized to the lat/lng of Los Angeles then for each establishment obtained from the textsearch api call is put onto the map by creating a marker object with the information of the establishment. Also clicking on each marker will display the info window (closes other open info windows).</p>
     
     <h2>HTML5 Geolocation Demo</h2>
-    <button onclick="getLocation()">Try It</button>
 
-    <button id="yelp" onclick="updateMapYelp()">Test Yelp</button>
-    <button id="google" onclick="updateMapGoogle()">Test Google Search</button>
+    <!-- clicking on these buttons result in the ajax calls -->
+    <button id="yelp">Test Yelp</button>
+    <button id="google">Test Google Search</button>
 
-    
+    <!-- loads code for google maps, calls initmap function in testMapsApi.js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=initMap" async defer></script>
+
     <script src="./js/testMapsApi.js"></script>
   </body>
 </html>
