@@ -20,6 +20,8 @@ import edu.csupomona.cs480.API.EventAPI.EventBriteAPI;
 import edu.csupomona.cs480.Events.Event;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
+import edu.csupomona.cs480.location.Location;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -113,11 +115,12 @@ public class WebController {
 	}
 	
 	
-	@RequestMapping(value = "/EventBrite/{location}", method = RequestMethod.GET)
-	String getEvents(@PathVariable("location") String location) {
-		EventAPI api = new EventBriteAPI(null);
-		ArrayList<Event> eventsList = api.getEvents(null);
-		return "test";
+	@RequestMapping(value = "/events/{longitude}/{latitude}", method = RequestMethod.GET)
+	String getEvents(@PathVariable("longitude") double longitude,@PathVariable("latitude") double latitude) {
+		EventAPI api = new EventBriteAPI();
+		Location geoLocation = new Location(longitude, latitude);
+		String eventsJson = api.getEventsJsonByGeoLocation(geoLocation);
+		return eventsJson;
 		
 	}
 	
