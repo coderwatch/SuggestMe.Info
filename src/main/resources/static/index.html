@@ -319,9 +319,10 @@
                 </div> -->
                 <div class="row">
                     <div class="modal-body">
-                        <h2>Suggestions</h2>
+                        <h3>Suggestions</h3>
+                        <hr>
                         <div id="map"></div>
-                        <button id="yelp" onclick="updateMapYelp()">Test Yelp</button>
+                        <button id="yelp" onclick="updateMapYelp()" type="submit" class="btn btn-primary btn-lg">Go!</button>
                     </div>
                 </div>
             </div>
@@ -534,7 +535,7 @@
 
     
     <!-- Script for google maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=mapsCallback" async defer></script>
     <script src="./js/google-maps.js"></script>
 
 </body>

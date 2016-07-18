@@ -5,13 +5,13 @@
 var markers = [], infoWindows = [], map, userLat, userLng;
 
 // callback function from google maps
-function initMap() {
-  initMapOnUserLocation();
+function mapsCallback() {
+  getLocation();
 }
 
 // uses HTML5 geolocation to get the user's locaton
 //  The navigator object contains information about the browser.
-function initMapOnUserLocation() {
+function getLocation() {
     if (navigator.geolocation) {
       // if able to get location calls successGeolocation function, else calls errorGeolocation
         navigator.geolocation.getCurrentPosition(successGeolocation, errorGeolocation);
@@ -28,6 +28,20 @@ function successGeolocation(position)
   // position.coords is the user location from HTML5 geolocation api
   userLat = position.coords.latitude;
   userLng = position.coords.longitude;
+  initMap();
+}
+
+function errorGeolocation(error)
+{
+  alert('ERROR(' + error.code + '): ' + error.message);
+  // default to Los Angeles
+  userLat = 34.0522342;
+  userLng = -118.2436849;
+  initMap();
+}
+
+// initializes map based on whether or not geoloction worked
+function initMap() {
   map = new google.maps.Map(document.getElementById('map'));
   map.setCenter(new google.maps.LatLng(userLat, userLng));
   map.setZoom(13);
@@ -35,11 +49,6 @@ function successGeolocation(position)
   map.setOptions({
     draggable: false
   });
-}
-
-function errorGeolocation(error)
-{
-  alert('ERROR(' + error.code + '): ' + error.message);
 }
 
 // clicking on each button on the html page results in these ajax calls which dynamically update the webpage
@@ -182,3 +191,10 @@ function deleteMarkers() {
     }
     markers = [];
 }
+
+// makes sure that when the map is opened in the modal window it refreshes
+$("#map-area").on("shown.bs.modal", function () {
+    google.maps.event.trigger(map, "resize");
+});
+
+google.maps.event.addDomListener(window, "load", initMap);
