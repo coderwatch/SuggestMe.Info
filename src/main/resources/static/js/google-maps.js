@@ -51,27 +51,36 @@ function initMap() {
   });
 }
 
+// ajax calls
 // clicking on each button on the html page results in these ajax calls which dynamically update the webpage
 // test of yelp api
-$('#yelp').click(function() {
-  
+$("#yelp").click(function() {
     $.ajax({
         url: "/food/" + userLat + "/" + userLng + "/",
         type:'GET',
-        success: function(jsonResp)
-        {
+        success: function(jsonResp) {
             updateMapYelp(jsonResp);
         }               
     });
 });
 
+$("#eventbrite").click(function() {
+  $.ajax({
+        url: "/events/" + userLat + "/" + userLng + "/",
+        type:'GET',
+        success: function(jsonResp) {
+            console.log(jsonResp);
+            updateMapEventbrite(jsonResp);
+        }           
+    });
+})
+
 // test of google search
-$('#google').click(function() {
+$("#google").click(function() {
   $.ajax({
       url: "/testjson",
         type:'GET',
-        success: function(jsonResp)
-        {
+        success: function(jsonResp) {
             updateMapGoogle(jsonResp);
         }
   });
@@ -119,6 +128,13 @@ function updateMapYelp(input) {
   fitBoundsToMarkers();
 }
 
+// function updateMapEventbrite(input) {
+//   var myjson = jQuery.parseJSON(input);
+//   deleteMarkers();
+//   addMarkersAndInfoEventbrite(myjson);
+//   fitBoundsToMarkers();
+// }
+
 // helper function for updateMapYelp
 function addMarkersAndInfoYelp(json){
   map.setCenter(new google.maps.LatLng(json.region.center.latitude, json.region.center.longitude));
@@ -137,6 +153,24 @@ function addMarkersAndInfoYelp(json){
       infoWindows.push(infoWindow);
   });
 }
+
+// function addMarkersAndInfoEventbrite(json) {
+//   map.setCenter(new google.maps.LatLng(json.region.center.latitude, json.region.center.longitude));
+//   map.setZoom(13);
+//   map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+
+//   json.events.forEach(function(listing){
+//       var marker = makeMarker(map, listing.name, 
+//         new google.maps.LatLng({
+//             lat: listing.location.coordinate.latitude,
+//             lng: listing.location.coordinate.longitude
+//         }));
+//       var infoWindow = makeInfoWindow(listing.name);
+//       addListenersToMarker(marker, infoWindow);
+//       markers.push(marker);
+//       infoWindows.push(infoWindow);
+//   });
+// }
 
 // helper function for initializing maps
 // map: the map the marker should be attached to
@@ -196,5 +230,3 @@ function deleteMarkers() {
 $("#map-area").on("shown.bs.modal", function () {
     google.maps.event.trigger(map, "resize");
 });
-
-google.maps.event.addDomListener(window, "load", initMap);

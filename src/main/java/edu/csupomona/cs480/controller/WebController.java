@@ -115,10 +115,10 @@ public class WebController {
 	}
 	
 	
-	@RequestMapping(value = "/events/{longitude}/{latitude}", method = RequestMethod.GET)
-	String getEvents(@PathVariable("longitude") double longitude,@PathVariable("latitude") double latitude) {
+	@RequestMapping(value = "/events/{latitude}/{longitude}", method = RequestMethod.GET)
+	String getEvents(@PathVariable("latitude") double latitude, @PathVariable("longitude") double longitude) {
 		EventAPI api = new EventBriteAPI();
-		Location geoLocation = new Location(longitude, latitude);
+		Location geoLocation = new Location(latitude, longitude);
 		String eventsJson = api.getEventsJsonByGeoLocation(geoLocation);
 		return eventsJson;
 		
