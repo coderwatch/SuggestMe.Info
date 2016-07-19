@@ -2,7 +2,7 @@
 // https://developers.google.com/maps/documentation/javascript/reference
 
 // global variables
-var markers = [], infoWindows = [], map, userLat, userLng;
+var markers = [], infoWindows = [], businesses = [], map, userLat, userLng, labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', labelIndex = 0;
 
 // callback function from google maps
 function mapsCallback() {
@@ -124,6 +124,8 @@ function addMarkersAndInfoGoogle(json) {
 function updateMapYelp(input) {
   var myjson = jQuery.parseJSON(input);
   deleteMarkers();
+  labelIndex = 0;
+  businesses.length = 0;
   addMarkersAndInfoYelp(myjson);
   fitBoundsToMarkers();
 }
@@ -148,10 +150,15 @@ function addMarkersAndInfoYelp(json){
             lng: place.location.coordinate.longitude
         }));
       var infoWindow = makeInfoWindow(place.name);
+      var business = new Business(marker.label, place.name, place.rating, place.is_closed, place.location.display_address, place.display_phone);
       addListenersToMarker(marker, infoWindow);
       markers.push(marker);
       infoWindows.push(infoWindow);
+      businesses.push(business);
   });
+
+  // angular.element($('controller')).scope().getBusinesses();
+  // angular.element($('controller')).scope().$apply();
 }
 
 // function addMarkersAndInfoEventbrite(json) {
@@ -180,7 +187,8 @@ function makeMarker(map, title, position) {
   return new google.maps.Marker({
     map: map,
     title: title,
-    position: position
+    position: position,
+    label: labels[labelIndex++ % labels.length]
   });
 }
 
@@ -230,3 +238,27 @@ function deleteMarkers() {
 $("#map-area").on("shown.bs.modal", function () {
     google.maps.event.trigger(map, "resize");
 });
+
+function Business(index, name, rating, is_closed, address, phone) {
+  this.index = index;
+  this.name = name;
+  this.rating = rating;
+  if(is_closed == false)
+    this.open = "Open";
+  else
+    this.open = "Closed";
+  this.address = address[0] + " " + address[2];
+  this.phone = phone;
+  console.log("made a biz, name: "+this.name+", rating: " + this.rating);
+}
+
+angular.module("yelpApp", []).controller("YelpCtrl", function($scope) {
+  $scope.getBusinesses = function() {
+    // google.maps.event.addListenerOnce(map, 'idle', function(){
+    $scope.businesses = businesses;
+    console.log("in yelpctrl" + $scope.businesses);
+    // });
+    
+  }
+});
+

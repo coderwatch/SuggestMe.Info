@@ -318,11 +318,58 @@
                     </div>
                 </div> -->
                 <div class="row">
-                    <div class="modal-body">
-                        <h3>Suggestions</h3>
-                        <hr>
-                        <div id="map"></div>
-                        <button id="yelp" onclick="updateMapYelp()" type="submit" class="btn btn-primary btn-lg">Go!</button>
+                    <div class="modal-body" ng-app="yelpApp">
+                        <div class="col-lg-6">
+                            <hr>
+                            <div id="map"></div>
+                            <button id="yelp" onclick="updateMapYelp()" type="submit" class="btn btn-primary btn-lg">Go!</button>
+                        </div>
+                        <div class="col-lg-6 table-responsive" ng-controller="YelpCtrl">
+                            <h2>Suggestions</h2>
+                            <table class="table table-striped">
+                                <tr class="success">
+                                    <td>
+                                        <strong>Legend</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Business Name</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Business Rating</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Open now?</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Address</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Phone</strong>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="business in businesses">
+                                    <td>
+                                        {{business.index}}
+                                    </td>
+                                    <td>
+                                        {{business.name}}
+                                    </td>
+                                    <td>
+                                        {{business.rating}}
+                                    </td>
+                                    <td>
+                                        {{business.open}}
+                                    </td>
+                                    <td>
+                                        {{business.address}}
+                                    </td>
+                                    <td>
+                                        {{business.phone}}
+                                    </td>
+                                </tr>
+                            </table>
+                            <button class="btn btn-primary btn-lg" ng-click="getBusinesses()">Refresh</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -536,6 +583,7 @@
     
     <!-- Script for google maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=mapsCallback" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="./js/google-maps.js"></script>
 
 </body>

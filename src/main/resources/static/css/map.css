@@ -5,3 +5,8 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/*for table-responsive, Firefox only*/
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
