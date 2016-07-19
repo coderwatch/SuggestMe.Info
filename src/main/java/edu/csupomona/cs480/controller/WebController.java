@@ -21,6 +21,7 @@ import edu.csupomona.cs480.Events.Event;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
 import edu.csupomona.cs480.location.Location;
+import edu.csupomona.cs480.location.Venue;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -120,8 +121,15 @@ public class WebController {
 		EventAPI api = new EventBriteAPI();
 		Location geoLocation = new Location(latitude, longitude);
 		String eventsJson = api.getEventsJsonByGeoLocation(geoLocation);
-		return eventsJson;
-		
+		return eventsJson;	
+	}
+	
+	@RequestMapping(value = "/getVenue/{id}", method = RequestMethod.GET)
+	String getVenue(@PathVariable("id") double id){
+		EventAPI api = new EventBriteAPI();
+		Venue venue = new Venue(id);
+		String venueJson = api.getVenueCoordinates(venue);
+		return venueJson;
 	}
 	
 	//<!------Using Yelp API------->

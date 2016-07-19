@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edu.csupomona.cs480.Events.Event;
 import edu.csupomona.cs480.location.Location;
+import edu.csupomona.cs480.location.Venue;
 
 public interface EventAPI {
 	/**
@@ -12,4 +13,6 @@ public interface EventAPI {
 	 * @return the json response from eventbrite as a string.
 	 */
 	String getEventsJsonByGeoLocation (Location location);
+	
+	String getVenueCoordinates(Venue venue);
 }
