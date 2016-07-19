@@ -24,6 +24,7 @@ public class YelpAPI{
 	
 	public YelpAPI(){
 		this.service = new ServiceBuilder().apiKey(Consumer_Key).apiSecret(Consumer_Secret).build(YelpAPIOAuth.instance());
+		
 	}
 	
 	public void setLocation(String location){
@@ -40,7 +41,7 @@ public class YelpAPI{
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
 		request.addQuerystringParameter("term", "food");
 		request.addQuerystringParameter("location", location);
-		request.addQuerystringParameter("limit", String.valueOf(4));
+		request.addQuerystringParameter("limit", String.valueOf(10));
 		this.service.signRequest(this.accessToken, request);
 		Response response = request.send();
 		jsonString = response.getBody();
@@ -53,7 +54,7 @@ public class YelpAPI{
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
 		request.addQuerystringParameter("term", "food");
 		request.addQuerystringParameter("ll", LL);
-		request.addQuerystringParameter("limit", String.valueOf(4));
+		request.addQuerystringParameter("limit", String.valueOf(10));
 		this.service.signRequest(this.accessToken, request);
 		Response response = request.send();
 		jsonString = response.getBody();
