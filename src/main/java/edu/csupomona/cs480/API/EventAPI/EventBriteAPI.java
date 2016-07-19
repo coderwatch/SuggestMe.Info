@@ -39,7 +39,9 @@ public class EventBriteAPI implements EventAPI {
 	}
 	public String getVenueCoordinates(Venue venue){
 		configureForVenue();
-		builder.path(venue.venueIDAsString());
+		System.out.println(venue.venueIDAsString());
+		builder.path(venue.venueIDAsString()+"/");
+		builder.finish();
 		URI url = builder.getURI();
 		System.out.println(url);
 		String jsonResponse = restTemplate.getForObject(url,String.class);

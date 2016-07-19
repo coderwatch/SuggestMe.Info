@@ -125,7 +125,7 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/getVenue/{id}", method = RequestMethod.GET)
-	String getVenue(@PathVariable("id") double id){
+	String getVenue(@PathVariable("id") int id){
 		EventAPI api = new EventBriteAPI();
 		Venue venue = new Venue(id);
 		String venueJson = api.getVenueCoordinates(venue);

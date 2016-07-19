@@ -3,9 +3,9 @@ package edu.csupomona.cs480.location;
 public class Venue {
 	public double lattitude;
 	public double longitude;
-	public double venueID;
+	public int  venueID;
 	
-	public Venue(double venueID){
+	public Venue(int venueID){
 		this.venueID = venueID;
 	}
 	public String venueIDAsString(){
