@@ -28,10 +28,10 @@
     <h2>HTML5 Geolocation Demo</h2>
 
     <!-- clicking on these buttons result in the ajax calls -->
-    <div ng-controller="YelpCtrl" id="controller">
+    <div ng-controller="YelpCtrl">
         <button id="yelp" ng-click="getBusinesses()">Test Yelp</button>
         <button id="google">Test Google Search</button>
-
+        <button id="eventbrite">Test Eventbrite</button>
     
         <table>
             <tr>
@@ -52,6 +52,8 @@
             </tr>
         </table>
     </div>
+
+
 
     <!-- loads code for google maps, calls initmap function in google-maps.js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=mapsCallback" async defer></script>

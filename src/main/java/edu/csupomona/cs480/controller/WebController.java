@@ -87,7 +87,6 @@ public class WebController {
 		{
 			
 		}
-//		return new JSONObject(myJSON);
 		return myJSON;
 	}
 

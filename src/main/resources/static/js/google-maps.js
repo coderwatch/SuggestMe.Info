@@ -2,8 +2,26 @@
 // https://developers.google.com/maps/documentation/javascript/reference
 
 // global variables
-var markers = [], infoWindows = [], businesses = [], map, userLat, userLng, labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', labelIndex = 0;
 
+// map markers and info windows
+var markers = [],
+ infoWindows = [], 
+ // array of Business objects, obtained from yelp api, used for displaying store info in a table
+ businesses = [], 
+ // google map
+ map, 
+ // visitor's current location
+ userLat, userLng, 
+ // labels for map markers, each one letter
+ labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+ // index of next available label, start from 0 
+ labelIndex = 0,
+ // array of venues
+ venues = [];
+
+// google.maps.event.addListenerOnce(map, 'idle', function() {
+//    google.maps.event.trigger(map, 'resize');
+// });
 // callback function from google maps
 function mapsCallback() {
   getLocation();
@@ -46,9 +64,10 @@ function initMap() {
   map.setCenter(new google.maps.LatLng(userLat, userLng));
   map.setZoom(13);
   map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
-  map.setOptions({
-    draggable: false
-  });
+
+//   google.maps.event.addListenerOnce(map, 'idle', function() {
+//    google.maps.event.trigger(map, 'resize');
+// });
 }
 
 // ajax calls
@@ -69,7 +88,6 @@ $("#eventbrite").click(function() {
         url: "/events/" + userLat + "/" + userLng + "/",
         type:'GET',
         success: function(jsonResp) {
-            console.log(jsonResp);
             updateMapEventbrite(jsonResp);
         }           
     });
@@ -78,7 +96,7 @@ $("#eventbrite").click(function() {
 // test of google search
 $("#google").click(function() {
   $.ajax({
-      url: "/testjson",
+        url: "/testjson",
         type:'GET',
         success: function(jsonResp) {
             updateMapGoogle(jsonResp);
@@ -130,18 +148,9 @@ function updateMapYelp(input) {
   fitBoundsToMarkers();
 }
 
-// function updateMapEventbrite(input) {
-//   var myjson = jQuery.parseJSON(input);
-//   deleteMarkers();
-//   addMarkersAndInfoEventbrite(myjson);
-//   fitBoundsToMarkers();
-// }
-
 // helper function for updateMapYelp
 function addMarkersAndInfoYelp(json){
   map.setCenter(new google.maps.LatLng(json.region.center.latitude, json.region.center.longitude));
-  map.setZoom(13);
-  map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
 
   json.businesses.forEach(function(place){
       var marker = makeMarker(map, place.name, 
@@ -151,33 +160,92 @@ function addMarkersAndInfoYelp(json){
         }));
       var infoWindow = makeInfoWindow(place.name);
       var business = new Business(marker.label, place.name, place.rating, place.is_closed, place.location.display_address, place.display_phone);
+      // listener from corresponding infoWindow to marker
       addListenersToMarker(marker, infoWindow);
       markers.push(marker);
       infoWindows.push(infoWindow);
       businesses.push(business);
   });
-
-  // angular.element($('controller')).scope().getBusinesses();
-  // angular.element($('controller')).scope().$apply();
 }
 
-// function addMarkersAndInfoEventbrite(json) {
-//   map.setCenter(new google.maps.LatLng(json.region.center.latitude, json.region.center.longitude));
+function updateMapEventbrite(input) {
+  var myjson = jQuery.parseJSON(input);
+  deleteMarkers();
+  labelIndex = 0;
+  venues.length = 0;
+  addMarkersAndInfoEventbrite(myjson);
+  // fitBoundsToMarkers();
+// map.setCenter(new google.maps.LatLng(userLat, userLng));
 //   map.setZoom(13);
-//   map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+}
 
-//   json.events.forEach(function(listing){
-//       var marker = makeMarker(map, listing.name, 
-//         new google.maps.LatLng({
-//             lat: listing.location.coordinate.latitude,
-//             lng: listing.location.coordinate.longitude
-//         }));
-//       var infoWindow = makeInfoWindow(listing.name);
-//       addListenersToMarker(marker, infoWindow);
-//       markers.push(marker);
-//       infoWindows.push(infoWindow);
+// helper function for updateMapEventbrite
+function addMarkersAndInfoEventbrite(json) {
+
+  var maxNumOfEventsIWant = 10;
+  var counter=0;
+  json.events.forEach(function(listing) {
+      // each event takes place at a venue
+      // var venue = getVenue(listing.venue_id);
+      var deferredObj = getVenue(listing.venue_id);
+      // console.log("got a ven: " + venues[0]);
+      // console.log("got a venue: " + venue.address);
+      // .then() ensures that the function inside is called after the venue info is loaded
+      deferredObj.then(function() {
+          console.log("listing name: " + listing.name.text);
+          if(counter < maxNumOfEventsIWant) {
+              var lastAdded = venues[venues.length - 1];
+              var marker = makeMarker(map, listing.name.text, 
+              new google.maps.LatLng({
+                  lat: lastAdded.latitude,
+                  lng: lastAdded.longitude
+              }));
+
+              var infoWindow = makeInfoWindow(listing.name.text);
+              // listener from corresponding infoWindow to marker
+              addListenersToMarker(marker, infoWindow);
+              markers.push(marker);
+              infoWindows.push(infoWindow);
+          }
+          counter++;
+      });
+  });
+
+  
+  
+}
+
+// function test() {
+//   var venue;
+//   $.getJSON("test.json", function(json) {
+//     // venue = JSON.parse(json);
+//     alert(json.address.city);
 //   });
+
 // }
+// test();
+
+// $.ajax returns a Deferred object
+function getVenue(venue_id) {
+  var venue;
+  return $.ajax({
+        url: "/getVenue/" + venue_id + "/",
+        type:'GET',
+        dataType: 'json',
+        success: function(jsonResp) {
+            // var ven = jQuery.parseJSON(jsonResp);
+            // console.log(ven.address);
+            // console.log("jsonResp: " + jsonResp.address);
+            venue=new Venue(jsonResp.address.address_1, jsonResp.address.city, jsonResp.address.state, jsonResp.address.postal_code, jsonResp.name, jsonResp.latitude, jsonResp.longitude);
+            venues.push(venue);
+            // console.log(jsonResp.address.address_1+","+jsonResp.address.city+","+ jsonResp.address.state+","+ 
+            //   jsonResp.address.postal_code+","+ jsonResp.name+","+jsonResp.latitude+","+ jsonResp.longitude);
+            
+        }
+  });
+  // console.log("ven: " + ven.address.city);
+  // return ven;
+}
 
 // helper function for initializing maps
 // map: the map the marker should be attached to
@@ -188,6 +256,7 @@ function makeMarker(map, title, position) {
     map: map,
     title: title,
     position: position,
+    // labels each marker with a different letter of the alphabet
     label: labels[labelIndex++ % labels.length]
   });
 }
@@ -235,9 +304,11 @@ function deleteMarkers() {
 }
 
 // makes sure that when the map is opened in the modal window it refreshes
-$("#map-area").on("shown.bs.modal", function () {
-    google.maps.event.trigger(map, "resize");
-});
+// $("#map-area").on("show.bs.modal", function () {
+//     google.maps.event.addListenerOnce(map, 'idle', function() {
+//        google.maps.event.trigger(map, 'resize');
+//     });
+// });
 
 function Business(index, name, rating, is_closed, address, phone) {
   this.index = index;
@@ -252,6 +323,17 @@ function Business(index, name, rating, is_closed, address, phone) {
   console.log("made a biz, name: "+this.name+", rating: " + this.rating);
 }
 
+function Venue(address_1, city, state, postal_code, name, latitude, longitude) {
+  this.address = address_1;
+  this.city = city;
+  this.region = state;
+  this.postal_code = parseFloat(postal_code);
+  this.name = name;
+  this.latitude = parseFloat(latitude);
+  this.longitude = parseFloat(longitude);
+  console.log("made a ven, lat:"+latitude+", long: "+longitude);
+}
+  
 angular.module("yelpApp", []).controller("YelpCtrl", function($scope) {
   $scope.getBusinesses = function() {
     // google.maps.event.addListenerOnce(map, 'idle', function(){
@@ -262,3 +344,8 @@ angular.module("yelpApp", []).controller("YelpCtrl", function($scope) {
   }
 });
 
+// function test() {
+//   google.maps.event.addListenerOnce(map, 'idle', function() {
+//    google.maps.event.trigger(map, 'resize');
+// });
+// }

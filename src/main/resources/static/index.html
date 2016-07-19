@@ -91,7 +91,7 @@
                 </div> -->
                 <div class="col-lg-6 portfolio-item text-center">
                     <p>Ever had trouble deciding where to go to eat?</p>
-                    <a href="#map-area" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
+                    <a href="#map-area" onclick="test()" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
                         <strong>Suggest me a place to eat </strong>
                         <img src="images/restaurants.png" class="img-responsive center-block"></img>
                     </a>
@@ -320,16 +320,16 @@
                 <div class="row">
                     <div class="modal-body" ng-app="yelpApp">
                         <div class="col-lg-6">
-                            <hr>
                             <div id="map"></div>
                             <button id="yelp" onclick="updateMapYelp()" type="submit" class="btn btn-primary btn-lg">Go!</button>
                         </div>
                         <div class="col-lg-6 table-responsive" ng-controller="YelpCtrl">
                             <h2>Suggestions</h2>
+                            <hr>
                             <table class="table table-striped">
                                 <tr class="success">
                                     <td>
-                                        <strong>Legend</strong>
+                                        <strong>Index</strong>
                                     </td>
                                     <td>
                                         <strong>Business Name</strong>
