@@ -33,7 +33,7 @@ public class Food2Fork{
     /**
      * Extracts recipe IDs from search results.
      */
-    public static List<String> getRecipeIds(JSONObject result) throws IOException {
+    public List<String> getRecipeIds(JSONObject result) throws IOException {
         final ArrayList<String> recipeIds = new ArrayList<String>();
         final JSONArray recipes = result.getJSONArray("recipes");
         for (int i = 0; i < recipes.length(); ++i) {
@@ -44,19 +44,10 @@ public class Food2Fork{
         return recipeIds;
     }
 
-    public static JSONObject getRecipe(String id) throws IOException {
+    public JSONObject getRecipe(String id) throws IOException {
         final String url = API_URL_BASE + "get?key=" + API_KEY + "&rId=" + id;
         return run(url);
     }
 
-    public void test () throws IOException{
-        try {
-            final JSONObject searchResults = search("shredded chicken");
-            // Get and print the first recipe.
-            final JSONObject recipe = getRecipe(getRecipeIds(searchResults).get(0));
-            System.out.println(recipe.toString(2));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
