@@ -34,7 +34,7 @@ public class Food2Fork{
      * Extracts recipe IDs from search results.
      */
     public static List<String> getRecipeIds(JSONObject result) throws IOException {
-        final ArrayList<String> recipeIds = new ArrayList();
+        final ArrayList<String> recipeIds = new ArrayList<String>();
         final JSONArray recipes = result.getJSONArray("recipes");
         for (int i = 0; i < recipes.length(); ++i) {
             final JSONObject recipe = recipes.getJSONObject(i);
