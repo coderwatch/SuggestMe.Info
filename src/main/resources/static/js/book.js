@@ -53,21 +53,34 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 "Science",
 "Sports",
 "Travel"];
-url += '?' + $.param({
-  'api-key': "705fa0e1994d4a72a79cee53c93a05a6" ,
-  'list': arrayOfListOfBooks[Math.floor(Math.random()*arrayOfListOfBooks.length)]
-});
-$("#book").ready(function() {
+
+
+$("#bookSuggestion-btn").click(function() {
     $.ajax({
-        url: url,
+        url: url+= '?' + $.param({
+  'api-key': "705fa0e1994d4a72a79cee53c93a05a6" ,
+  'list': arrayOfListOfBooks[Math.floor(Math.random()*arrayOfListOfBooks.length)]}),
         type:'GET',
         success: function(jsonResp) {
-            displayJson(jsonResp);
+        	renderModal(jsonResp);
         }               
     });
 });
 
-function displayJson(json){
+
+function renderModal(json){
 	var myJson = jQuery.parseJSON(JSON.stringify(json));
-	console.log(myJson);
+	
+	myJson.results.forEach(function(item){
+		item.book_details.forEach(function(item){
+			
+			console.log(item.primary_isbn13);
+			console.log(item.author);
+			
+			//use these at the bottom.
+			console.log(item.description);
+			console.log(item.title);
+		});
+	});
+	
 }
