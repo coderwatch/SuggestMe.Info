@@ -28,30 +28,10 @@
     <h2>HTML5 Geolocation Demo</h2>
 
     <!-- clicking on these buttons result in the ajax calls -->
-    <div ng-controller="YelpCtrl">
-        <button id="yelp" ng-click="getBusinesses()">Test Yelp</button>
-        <button id="google">Test Google Search</button>
-        <button id="eventbrite">Test Eventbrite</button>
+    <button id="yelp">Test Yelp</button>
+    <button id="google">Test Google Search</button>
+    <button id="eventbrite">Test Eventbrite</button>
     
-        <table>
-            <tr>
-                <td>
-                    <strong>Business Name</strong>
-                </td>
-                <td>
-                    <strong>Business Rating</strong>
-                </td>
-            </tr>
-            <tr ng-repeat="business in businesses" ng-model="businesses">
-                <td>
-                    {{business.name}}
-                </td>
-                <td>
-                    {{business.rating}}
-                </td>
-            </tr>
-        </table>
-    </div>
 
 
 
