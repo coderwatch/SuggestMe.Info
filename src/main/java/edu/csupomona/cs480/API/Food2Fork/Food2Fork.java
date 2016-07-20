@@ -19,13 +19,14 @@ public class Food2Fork{
     /**
      * Performs an HTTP GET and parses the response body as JSON.
      */
+    
     private static JSONObject run(String url) throws IOException {
         final Request request = new Request.Builder().url(url).build();
         final Response response = client.newCall(request).execute();
         return new JSONObject(response.body().string());
     }
 
-    public static JSONObject search(String query) throws IOException {
+    public JSONObject search(String query) throws IOException {
         final String url = API_URL_BASE + "/search?key=" + API_KEY + "&q=" + URLEncoder.encode(query, "UTF-8");
         return run(url);
     }
@@ -33,6 +34,7 @@ public class Food2Fork{
     /**
      * Extracts recipe IDs from search results.
      */
+    
     public List<String> getRecipeIds(JSONObject result) throws IOException {
         final ArrayList<String> recipeIds = new ArrayList<String>();
         final JSONArray recipes = result.getJSONArray("recipes");

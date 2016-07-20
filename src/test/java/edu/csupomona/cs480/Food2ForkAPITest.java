@@ -1,7 +1,6 @@
 package edu.csupomona.cs480;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.json.JSONObject;
 
@@ -13,7 +12,7 @@ public class Food2ForkAPITest {
 	
 	public static void main (String[] args) throws IOException{
         try {
-            final JSONObject searchResults = Food2Fork.search("breakfast");
+            final JSONObject searchResults = test.search("vegan");
             final JSONObject recipelist[] = new JSONObject[10];
             for(int i = 0; i < 10; i++)
             {
@@ -25,11 +24,5 @@ public class Food2ForkAPITest {
             e.printStackTrace();
         }
     }
-	
-/*for(int i
- *  GET" /recipe/"searchterm"/i
- * 
- * 
- */
-	
+
 }

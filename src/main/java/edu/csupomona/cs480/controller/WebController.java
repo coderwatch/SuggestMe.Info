@@ -17,6 +17,7 @@ import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.API.LocationAPI.*;
 import edu.csupomona.cs480.API.EventAPI.EventAPI;
 import edu.csupomona.cs480.API.EventAPI.EventBriteAPI;
+import edu.csupomona.cs480.API.Food2Fork.Food2Fork;
 import edu.csupomona.cs480.Events.Event;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
@@ -28,8 +29,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import com.google.common.base.Joiner;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.math.fraction.Fraction;
@@ -50,6 +50,12 @@ import java.io.*;
 
 @RestController
 public class WebController {
+	
+	
+	private static Food2Fork fork = new Food2Fork();
+	private ArrayList<JSONObject> recipelist = new ArrayList<JSONObject>();
+	private int listsize = recipelist.size();
+	private Random rand = new Random();
 
 	/**
 	 * When the class instance is annotated with
@@ -139,7 +145,8 @@ public class WebController {
 		String jsonresponse = yelp.jsonresponse();
 		return jsonresponse;
 	}
-	//Yelp Test with Longitude and Latitude
+	
+	//<!-----Yelp Search with Longitude and Latitude----->
 	@RequestMapping(value = "/food/{Latitude}/{Longitude}", method = RequestMethod.GET)
 	String getLocationLL(@PathVariable("Latitude") String Latitude, 
 						@PathVariable("Longitude") String Longitude) throws IOException{
@@ -149,6 +156,29 @@ public class WebController {
 		String jsonresponse = yelp.lnljson();
 		return jsonresponse;
 	}
+	
+	//<!------Food2Fork Recipe List Search------>
+	@RequestMapping(value = "/recipe/{searchterm}", method = RequestMethod.GET)
+	String getRecipeList(@PathVariable("searchterm") String term)throws IOException{
+		final JSONObject searchResults = fork.search(term);
+		recipelist.clear();
+		for(int i = 10; i < 10; i++){
+			recipelist.add(fork.getRecipe(fork.getRecipeIds(searchResults).get(i)));
+		}
+		int index = rand.nextInt(listsize);
+		String response = recipelist.get(index).toString(2);
+		recipelist.remove(index);
+		return response;
+	}
+	
+	@RequestMapping(value = "/recipe/random", method = RequestMethod.GET)
+	String getRandomRecipe()throws IOException{
+		int index = rand.nextInt(listsize);
+		String response = recipelist.get(index).toString(2);
+		recipelist.remove(index);
+		return response;
+	}
+	
 
 	//Gets the user's name.
 	@RequestMapping(value = "/cs480/user/name/{userId}", method = RequestMethod.GET)
