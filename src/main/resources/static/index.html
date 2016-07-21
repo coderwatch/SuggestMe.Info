@@ -281,11 +281,13 @@
                 </div>
             </div>
             <div class="container">
-                <div class="modal-body"  >
+                <div class="modal-body" ng-controller="BookCtrl" >
                      <div class="col-lg-6">
-                     	
+                     	<img src={{image}}>
+                        <br></br>
+                        <strong>{{desc}}</strong>
                      </div>
-                    <div class="col-lg-6" ng-controller="BookCtrl">
+                    <div class="col-lg-6" >
                             <button id="book-btn" class="btn btn-primary btn-lg" ng-click="getBook()">Get a Book Suggestion!</button>
                                 <br></br>
                              <table class="table table-striped">
