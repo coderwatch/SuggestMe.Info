@@ -69,21 +69,7 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 			$scope.isbn = book.isbn;
 			$scope.desc = book.desc;
 			$scope.url = book.url;
-			console.log(book.url);
-			// requestServer(book.url);
 			// $scope.image = image;
-			$.ajax({
-
-				url: "/json/" + book.url,
-				type:'GET',
-				success: function(response) {
-					console.log(response);
-					$scope.image = response;
-				}
-				fail: function(response){
-					console.log("fail");
-				}               
-			});
 			
 
 			console.log("in bookController");
