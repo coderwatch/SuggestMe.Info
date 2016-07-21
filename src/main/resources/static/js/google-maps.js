@@ -202,13 +202,12 @@ function updateMapEventbrite(input) {
     venues.length = 0;
     addMarkersAndInfoEventbrite(myjson);
     fitBoundsToMarkers();
-    // map.setCenter(new google.maps.LatLng(userLat, userLng));
-    //   map.setZoom(13);
 }
 
 // helper function for updateMapEventbrite
 function addMarkersAndInfoEventbrite(json) {
     var latLngBounds = new google.maps.LatLngBounds();
+    // limit to 10 listings
     var maxNumOfEventsIWant = 10;
     var counter = 0;
     json.events.forEach(function(listing) {
@@ -396,6 +395,7 @@ $(".open-map-modal").click(function() {
         if(!haveAskedUserLoc) {
             getLocation();
             initMap();
+            // prevent asking user for location again
             haveAskedUserLoc = true;
         }
     });

@@ -27,6 +27,7 @@ import edu.csupomona.cs480.location.Venue;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.*;
@@ -64,11 +65,33 @@ public class WebController {
 		return eventsJson;	
 	}
 	
-	@RequestMapping(value = "/jsoup/{URL}", method = RequestMethod.GET)
-	 	String testJSON(@PathVariable("URL") String URL) throws IOException {
-		Document doc = Jsoup.connect(URL).get();
-		Elements elements =doc.select("div.maintain-height img");
-		return elements.attr("src");
+	@RequestMapping(value = "/jsoup", method = RequestMethod.POST)
+	 	String testJSON(@RequestParam("URL") String URL) throws IOException {
+		Document doc = Jsoup.connect(URL).timeout(30000).userAgent("Mozilla/17.0").get();
+//		Elements elements =doc.select("div.maintain-height img");
+		String got = ((Node) doc.select("img#ebooksImgBlkFront, img#imgBlkFront").first()).absUrl("data-a-dynamic-image");
+		int numQuotes = 0;
+		boolean done = false;
+		int index = 0;
+		int startImgUrl=0, endImgUrl=0;
+		while(!done && index < got.length()) {
+			if(got.charAt(index) == '"') {
+				if(numQuotes==0) {
+					startImgUrl = index+1;
+				}
+				else if(numQuotes==1) {
+					endImgUrl = index;
+				}
+				numQuotes++;
+			}
+			if(numQuotes == 2) {
+				done = true;
+			}
+			index++;
+		}
+		String wanted = got.substring(startImgUrl, endImgUrl);
+		System.out.println("img url: " + wanted);
+		return wanted;
 	 }
 	
 	//<!-------Using Venue from EventBrite API--------->

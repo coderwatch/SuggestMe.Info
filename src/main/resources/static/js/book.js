@@ -1,7 +1,7 @@
 
 var url = "https://api.nytimes.com/svc/books/v3/lists.json";
 var book;
-var image;
+var image_url;
 var books = [];
 var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 "Combined Print and E-Book Nonfiction",
@@ -62,17 +62,39 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 	myApp.controller("BookCtrl", function($scope){
 		request();
 		$scope.getBook = function(){
-			request();
-			$scope.title = book.title;
-			$scope.author = book.author;
-			$scope.genre = book.genre;
-			$scope.isbn = book.isbn;
-			$scope.desc = book.desc;
-			$scope.url = book.url;
-			// $scope.image = image;
+			getRandomBook();
+			
+			// $scope.title = book.title;
+			// $scope.author = book.author;
+			// $scope.genre = book.genre;
+			// $scope.isbn = book.isbn;
+			// $scope.desc = book.desc;
+			// $scope.url = book.url;
+			var save;
+			$.ajax({
+				url: "/jsoup",
+				type:'POST',
+				data: {URL: book.url},
+				success: function(response) {
+					save = response;
+					// $scope.image_url = response;
+					// console.log($scope.image_url);
+				}               
+			}).then(function() {
+				$scope.title = book.title;
+				$scope.author = book.author;
+				$scope.genre = book.genre;
+				$scope.isbn = book.isbn;
+				$scope.desc = book.desc;
+				$scope.url = book.url;
+				
+				$scope.image_url = save;
+				console.log($scope.image_url);
+				request();
+			});
 			
 
-			console.log("in bookController");
+			// console.log("in bookController");
 		}
 
 	});
@@ -96,9 +118,8 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 				'list': arrayOfListOfBooks[Math.floor(Math.random()*arrayOfListOfBooks.length)]}),
 			type:'GET',
 			success: function(jsonResp) {
-				console.log("sending get request!");
+				// console.log("sending get request!");
 				parseJson(jsonResp);
-				getRandomBook();
 			}               
 		});
 	}
@@ -107,7 +128,7 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 		book = books[Math.floor(Math.random()*books.length)];
 
 
-		console.log("grabbed book" + book);
+		// console.log("grabbed book" + book);
 	}
 
 	function parseJson(json){
@@ -121,16 +142,17 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 
 		myJson.results.forEach(function(item){
 			url = item.amazon_product_url;
-			console.log(url)
+			// console.log(url)
 			genre = item.list_name;
 			item.book_details.forEach(function(item){
 				author = item.author;
-				console.log(author);
+				// console.log(author);
 				title = item.title;
 				desc = item.description;
 			});
-			console.log(genre);
+			// console.log(genre);
 			books.push(new Book(author,desc,title, genre, url));
+			// console.log("books " + books);
 		});
 	}
 	function Book(author, desc, title, genre, url){
@@ -139,4 +161,5 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 		this.title = title;
 		this.genre = genre;
 		this.url = url;
+		// console.log("in Book(): " + this.url)
 	}
