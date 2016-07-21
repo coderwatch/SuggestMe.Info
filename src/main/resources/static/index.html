@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="col-lg-6 portfolio-item text-center">
                     <p>Looking for a good book to read?</p>
-                    <a href="" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
+                    <a href="#book-modal" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
                         <strong>Suggest me a book to read </strong>
                         <img src="images/books.png" class="img-responsive center-block"></img>
                     </a>
@@ -272,7 +272,7 @@
     <!-- end map-modal -->
 
     <!-- book-modal -->
-    <div class="portfolio-modal modal fade" id="book-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="portfolio-modal modal fade" id="book-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -281,16 +281,48 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
+                     <div class="modal-body" ng-app="myBookApp" >
+                     <div class="col-lg-6">
+                     	
+                     </div>
+                     <div class="col-lg-6" ng-controller="BookCtrl">
+                            <button id="book-btn" class="btn btn-primary btn-lg">Get a Book Suggestion!</button>
+                             <table class="table table-striped">
+                                <tr>
+                                    <td>
+                                        <strong>Index</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Event Name</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Address</strong>
+                                    </td>
+                                    <td>
+                                        <strong>More Information</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{book.title}}</strong>
+                                    </td>
+                                    <td>
+                                        <strong>{{book.author}}</strong>
+                                    </td>
+                                    <td>
+                                        <strong>{{book.genre}}</strong>
+                                    </td>
+                                    <td>
+                                    	<strong>{{book.isbn}}</strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                             
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
     <!-- end book-modal -->
 
     <!-- jQuery -->
@@ -314,6 +346,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="js/google-maps.js"></script>
+    <script src="js/book.js"></script>
 
 </body>
 

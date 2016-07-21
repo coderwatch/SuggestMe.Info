@@ -1,5 +1,6 @@
 
 var url = "https://api.nytimes.com/svc/books/v3/lists.json";
+var book;
 var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 "Combined Print and E-Book Nonfiction",
 "Hardcover Fiction",
@@ -54,33 +55,45 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 "Sports",
 "Travel"];
 
+var bookApp = angular.module("myBookApp",[]);
 
-$("#bookSuggestion-btn").click(function() {
+bookApp.controller("BookCtrl", function($scope){
+		$scope.getBook = function(){
+			$scope.book = book;
+			console.log("in bookController" + $scope.book);
+		}
+		
+});
+$("#book-btn").click(function() {
     $.ajax({
         url: url+= '?' + $.param({
   'api-key': "705fa0e1994d4a72a79cee53c93a05a6" ,
   'list': arrayOfListOfBooks[Math.floor(Math.random()*arrayOfListOfBooks.length)]}),
         type:'GET',
         success: function(jsonResp) {
-        	renderModal(jsonResp);
+        	console.log("sending get request!");
+        	parseJson(jsonResp);
         }               
     });
 });
 
 
-function renderModal(json){
+function parseJson(json){
 	var myJson = jQuery.parseJSON(JSON.stringify(json));
 	
 	myJson.results.forEach(function(item){
 		item.book_details.forEach(function(item){
 			
-			console.log(item.primary_isbn13);
-			console.log(item.author);
-			
-			//use these at the bottom.
-			console.log(item.description);
-			console.log(item.title);
+			book = new Book(item.primary_isbn13, item.author, item.description, item.title, item.list_name);
+			console.log("created book: "+book.author);
 		});
-	});
-	
+	});	
+}
+
+function Book(isbn, author, desc, title, genre){
+	this.isbn = isbn;
+	this.author = author;
+	this.desc = desc;
+	this.title = title;
+	this.genre = genre;
 }

@@ -17,7 +17,7 @@ SuggestMe.Info uses the following Application Interfaces:
 
 1. Yelp
 2. Eventbrite
-3. New York Times Boooks
+3. New York Times Books
 4. Food2Fork
 
 **The Team**
