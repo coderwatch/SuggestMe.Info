@@ -1,41 +1,35 @@
 
 SuggestMe.Info
---------
-A web application made by Coderwatch that will give the user a random suggestion of where to eat, what to cook, where to explore, and what to read
+===========
 
-Overview
---------
-test for jenkins
-The skeleton of the demo web project for CS480.
+![SuggestMeInfo](.../static/images/suggest_me_logo.png)
 
-Test for Jenkins!
-http://jenkins.cs480.yusun.io/jenkins/github-webhook/
-This project is designed to let you practice the different aspects of software engineering, such as version control, design, tests, build, deployment, and maintenance.
+**Why SuggestMe.Info?**
+-----------------------
+*Can't make your mind on what to do?....Suggestme.info is the answer!*
+SuggestMe.info can be random suggestions on what to eat, where to explore, what to cook, and what to read!
 
-Environment Setup
------------------
+If you ever in the mood of doing something but need a suggestion then...SuggestMe.Info!
 
-1. Install the latests Maven (http://maven.apache.org/download.cgi)
-2. Install the Eclipse 4+ (http://www.eclipse.org/)
-3. Install the Maven Eclipse Plug-in using the update site (http://www.eclipse.org/m2e/download/)
-
-Importing the Project into Eclipse
+**API Support**
 ----------------------------------
+SuggestMe.Info uses the following Application Interfaces:
 
-1. File->Import->Maven->Existing Maven Projects
-2. Select the directory containing the pom.xml file
-3. Finish
+1. Yelp
+2. Eventbrite
+3. New York Times Boooks
+4. Food2Fork
 
-Building the Project for the First Time
+**The Team**
 ---------------------------------------
-1. Right-click on the project root folder->Maven->Update Project
+Members of the CoderWatch!
 
-Running the Project Locally
-----------------------------------------
-1. Locate the App.java in src/main/java source folder and right-click on it->Run As->Java Application
-2. Verify the running process in your web browser by the following URLs:
+1. Philip Chiang
+2. Oscar Nevarez
+3. Toni Nguyen
+4. Josue Ruiz
 
-- http://localhost:8080/
-- http://localhost:8080/cs480/ping
-- http://localhost:8080/cs480/home
+**Open Source**
+---------------------------------------
+All Rights go to their respective owners
 

@@ -3,6 +3,13 @@ package edu.csupomona.cs480.API.LocationAPI;
 import com.github.scribejava.core.builder.api.DefaultApi10a;
 import com.github.scribejava.core.model.OAuth1RequestToken;
 
+/*
+ * YELP API CLASS
+ * 	The yelp api creates a branch from a default api format to use a reference
+ * 
+ * 
+ */
+
 public class YelpAPIOAuth extends DefaultApi10a {
 	
 	private static class InstanceHolder{
