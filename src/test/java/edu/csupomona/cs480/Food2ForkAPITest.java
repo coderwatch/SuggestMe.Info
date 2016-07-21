@@ -1,6 +1,8 @@
 package edu.csupomona.cs480;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import org.json.JSONObject;
 
@@ -8,18 +10,22 @@ import edu.csupomona.cs480.API.Food2Fork.*;
 
 public class Food2ForkAPITest {
 	
-	public static Food2Fork test = new Food2Fork();
+	public static Food2Fork fork = new Food2Fork();
+	public static ArrayList<JSONObject> recipelist = new ArrayList<JSONObject>();
+	public static Random rand = new Random();
 	
 	public static void main (String[] args) throws IOException{
         try {
-            final JSONObject searchResults = test.search("vegan");
-            final JSONObject recipelist[] = new JSONObject[10];
-            for(int i = 0; i < 10; i++)
-            {
-            	 recipelist[i] = test.getRecipe(test.getRecipeIds(searchResults).get(i));
-            	 System.out.println(recipelist[i].toString(2));
-            	 System.out.println("");
+        	
+            final JSONObject searchResults = fork.search("vegan");
+            for(int i = 0; i < 10; i++){
+            	 recipelist.add(fork.getRecipe(fork.getRecipeIds(searchResults).get(i)));
             }
+            int index = (int) rand.nextInt(recipelist.size());
+        
+            String response = recipelist.get(index).toString(2);
+            recipelist.remove(index);
+            System.out.println(response);
         } catch (IOException e) {
             e.printStackTrace();
         }

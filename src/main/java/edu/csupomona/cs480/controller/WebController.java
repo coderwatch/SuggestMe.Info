@@ -52,10 +52,9 @@ import java.io.*;
 public class WebController {
 	
 	
-	private static Food2Fork fork = new Food2Fork();
-	private ArrayList<JSONObject> recipelist = new ArrayList<JSONObject>();
-	private int listsize = recipelist.size();
-	private Random rand = new Random();
+	public static Food2Fork fork = new Food2Fork();
+	public static ArrayList<JSONObject> recipelist = new ArrayList<JSONObject>();
+	public static Random rand = new Random();
 
 	/**
 	 * When the class instance is annotated with
@@ -158,14 +157,14 @@ public class WebController {
 	}
 	
 	//<!------Food2Fork Recipe List Search------>
-	@RequestMapping(value = "/recipe/{searchterm}", method = RequestMethod.GET)
-	String getRecipeList(@PathVariable("searchterm") String term)throws IOException{
-		final JSONObject searchResults = fork.search(term);
+	@RequestMapping(value = "/recipe/{search}", method = RequestMethod.GET)
+	String getRecipeList(@PathVariable("search") String search)throws IOException{
+		final JSONObject searchResults = fork.search(search);
 		recipelist.clear();
 		for(int i = 10; i < 10; i++){
 			recipelist.add(fork.getRecipe(fork.getRecipeIds(searchResults).get(i)));
 		}
-		int index = rand.nextInt(listsize);
+		int index = (int) rand.nextInt(recipelist.size());
 		String response = recipelist.get(index).toString(2);
 		recipelist.remove(index);
 		return response;
@@ -173,9 +172,18 @@ public class WebController {
 	
 	@RequestMapping(value = "/recipe/random", method = RequestMethod.GET)
 	String getRandomRecipe()throws IOException{
-		int index = rand.nextInt(listsize);
-		String response = recipelist.get(index).toString(2);
+		
+		String response= null;
+		if(recipelist.size() <= 0){
+			response = "List is empty!";
+		}
+		else{
+		
+		int index = rand.nextInt(recipelist.size());
+		response = recipelist.get(index).toString(2);
 		recipelist.remove(index);
+		}
+		
 		return response;
 	}
 	
