@@ -2,9 +2,9 @@
 // https://developers.google.com/maps/documentation/javascript/reference
 
 // global variables
-
-// map markers and info windows
+    // array of Marker objects
 var markers = [],
+    // array of infoWindows
     infoWindows = [], 
     // array of Business objects, obtained from yelp api, used for displaying store info in a table
     businesses = [], 
@@ -20,8 +20,9 @@ var markers = [],
     labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     // index of next available label, start from 0 
     labelIndex = 0,
-    // array of venues
+    // array of Venue objects
     venues = [],
+    // array of Event objects
     events = [];
 
 // uses HTML5 geolocation to get the user's locaton
@@ -399,4 +400,5 @@ $(".open-map-modal").click(function() {
         }
     });
     $("#map-modal").modal("show");
+    // 2 ways of making modal window show up: .modal() (js) or data-toggle="modal" (html)
 });

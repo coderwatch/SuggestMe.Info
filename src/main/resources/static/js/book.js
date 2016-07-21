@@ -80,7 +80,7 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 	// function requestServer(amazonUrl) {
 	// 	$.ajax({
 
-	// 		url: "/json/" + amazonUrl,
+	// 		url: "/jsoup/" + amazonUrl,
 	// 		type:'GET',
 	// 		success: function(response) {
 	// 			console.log(response);

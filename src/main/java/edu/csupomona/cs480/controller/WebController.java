@@ -64,7 +64,7 @@ public class WebController {
 		return eventsJson;	
 	}
 	
-	@RequestMapping(value = "/json/{URL}", method = RequestMethod.GET)
+	@RequestMapping(value = "/jsoup/{URL}", method = RequestMethod.GET)
 	 	String testJSON(@PathVariable("URL") String URL) throws IOException {
 		Document doc = Jsoup.connect(URL).get();
 		Elements elements =doc.select("div.maintain-height img");

@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-lg-6 portfolio-item text-center">
                     <p>Wondering what to make for breakfast/lunch/dinner?</p>
-                    <a href="" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
+                    <a href="#recipe-modal" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
                         <strong>Suggest me a meal to make </strong>
                         <img src="images/cooking.png" class="img-responsive center-block"></img>
                     </a>
@@ -322,6 +322,56 @@
     </div>
     <!-- end book-modal -->
 
+    <!-- recipe-modal -->
+    <div class="portfolio-modal modal fade" id="recipe-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="modal-body" ng-controller="RecipeCtrl">
+                    <div class="row">
+                        <div class="col-lg-6 table-responsive">
+                            <button id="food2fork" ng-click="getRecipe()" class="btn btn-primary btn-lg">Load Recipe</button>
+                            <hr>
+                            <img ng-src="{{recipe.image_url}}" class="img-responsive center-block"></img>
+                            <strong>Recipe and Photo Copyright</strong>
+                            <hr>
+                            <a ng-href="{{recipe.publisher_url}}" target="_blank">{{recipe.publisher}}</a>
+                        </div>
+                        <div class="col-lg-6 table-responsive">
+                            <table class="table table-striped">
+                                <tr>
+                                    <td class="success">
+                                        <strong>Title: {{recipe.title}}</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="info">
+                                        <strong>Ingredients</strong>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="ingredient in recipe.ingredients">
+                                    <td>
+                                        {{ingredient}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a ng-href="{{recipe.source_url}}" target="_blank"><strong> See Directions</strong></a>
+                                    </td>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end recipe-modal -->
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -344,6 +394,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="js/google-maps.js"></script>
     <script src="js/book.js"></script>
+    <script src="js/food2fork.js"></script>
 
 </body>
 
