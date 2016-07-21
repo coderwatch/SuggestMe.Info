@@ -64,6 +64,13 @@ public class WebController {
 		return eventsJson;	
 	}
 	
+	@RequestMapping(value = "/json/{URL}", method = RequestMethod.GET)
+	 	String testJSON(@PathVariable("URL") String URL) throws IOException {
+		Document doc = Jsoup.connect(URL).get();
+		Elements elements =doc.select("div.maintain-height img");
+		return elements.attr("src");
+	 }
+	
 	//<!-------Using Venue from EventBrite API--------->
 	@RequestMapping(value = "/getVenue/{id}", method = RequestMethod.GET)
 	String getVenue(@PathVariable("id") int id){

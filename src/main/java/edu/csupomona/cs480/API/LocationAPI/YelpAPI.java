@@ -29,16 +29,16 @@ public class YelpAPI{
 	public void createToken(){
 		this.accessToken = new OAuth1AccessToken(Token, Token_Secret);
 	}
-	//Sets the location based off String
+	//Sets search term based off String
 	public void setLocation(String location){
 		this.location = location;
 	}
 	
-	//Sets search location based off geo-coordinates
+	//Sets search term location based off geo-coordinates
 	public void setLatitudeLongitude(String latitude, String longitude){
 		this.geocoordinates = latitude +","+longitude;
 	}
-	
+	//<!---String Search----->
 	public String stringSearch() throws IOException {
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
 		request.addQuerystringParameter("term", "food");
@@ -46,7 +46,7 @@ public class YelpAPI{
 		request.addQuerystringParameter("limit", String.valueOf(10));
 		return makeRequest(request);
 	}
-	
+	//<!------Geocoordinate Search------>
 	public String latitudelongitudeSearch() throws IOException{
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
 		request.addQuerystringParameter("term", "food");
@@ -54,7 +54,7 @@ public class YelpAPI{
 		request.addQuerystringParameter("limit", String.valueOf(10));
 		return makeRequest(request);
 	}
-	
+	//<!------Signs Request------->
 	public String makeRequest(OAuthRequest request) throws IOException{
 		this.service.signRequest(this.accessToken, request);
 		Response response = request.send();
