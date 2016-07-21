@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Food2Fork{
     private static final String API_URL_BASE = "http://food2fork.com/api/";
-    private static final String API_KEY = "7358914b1c72e5871e1bda976a560ee4";
+    private static final String API_KEY = "d06533ba000b26bd6d073e35984355ec";
     private static final OkHttpClient client = new OkHttpClient();
 
     /**
