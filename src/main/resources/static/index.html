@@ -34,7 +34,7 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" ng-app="myApp">
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -173,7 +173,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="modal-body" ng-app="myApp">
+                    <div class="modal-body" >
                         <div class="col-lg-6">
                             <!-- Yelp -->
                             <button id="yelp" onclick="updateMapYelp()" class="btn btn-primary btn-lg hidden">Get Restaurants Near Me!</button>
@@ -272,7 +272,7 @@
     <!-- end map-modal -->
 
     <!-- book-modal -->
-      <div class="portfolio-modal modal fade" id="book-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="book-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -281,12 +281,12 @@
                 </div>
             </div>
             <div class="container">
-                     <div class="modal-body" ng-app="myBookApp" >
+                <div class="modal-body"  >
                      <div class="col-lg-6">
                      	
                      </div>
-                     <div class="col-lg-6" ng-controller="BookCtrl">
-                            <button id="book-btn" class="btn btn-primary btn-lg">Get a Book Suggestion!</button>
+                    <div class="col-lg-6" ng-controller="BookCtrl">
+                            <button id="book-btn" class="btn btn-primary btn-lg" ng-click="getBook()">Get a Book Suggestion!</button>
                              <table class="table table-striped">
                                 <tr>
                                     <td>
@@ -304,7 +304,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>{{book.title}}</strong>
+                                        <strong ng-bind="book.title"></strong>
                                     </td>
                                     <td>
                                         <strong>{{book.author}}</strong>
@@ -317,12 +317,12 @@
                                     </td>
                                 </tr>
                             </table>
-                        </div>
-                            
-                        </div>
                     </div>
+                            
                 </div>
             </div>
+        </div>
+    </div>
     <!-- end book-modal -->
 
     <!-- jQuery -->

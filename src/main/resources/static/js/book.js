@@ -55,9 +55,9 @@ var arrayOfListOfBooks = ["Combined Print and E-Book Fiction",
 "Sports",
 "Travel"];
 
-var bookApp = angular.module("myBookApp",[]);
+// var bookApp = angular.module("myBookApp",[]);
 
-bookApp.controller("BookCtrl", function($scope){
+myApp.controller("BookCtrl", function($scope){
 		$scope.getBook = function(){
 			$scope.book = book;
 			console.log("in bookController" + $scope.book);
