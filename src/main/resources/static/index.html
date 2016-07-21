@@ -91,14 +91,14 @@
                 </div> -->
                 <div class="col-lg-6 portfolio-item text-center">
                     <p>Ever had trouble deciding where to go to eat?</p>
-                    <a href="#map-area" onclick="test()" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
+                    <a href="#map-modal" class="portfolio-link btn btn-info btn-lg btn-block open-map-modal" onclick="displayYelpInfo()">
                         <strong>Suggest me a place to eat </strong>
                         <img src="images/restaurants.png" class="img-responsive center-block"></img>
                     </a>
                 </div>
                 <div class="col-lg-6 portfolio-item text-center">
                     <p>Wanna know about cool local events you might be missing?</p>
-                    <a href="#map-area" class="portfolio-link btn btn-info btn-lg btn-block" data-toggle="modal">
+                    <a href="#map-modal" class="portfolio-link btn btn-info btn-lg btn-block open-map-modal" onclick="displayEventbriteInfo()">
                         <strong>Suggest me an event to attend </strong>
                         <img src="images/events.png" class="img-responsive center-block"></img>
                     </a>
@@ -281,8 +281,8 @@
     </div> -->
 
     <!-- Portfolio Modals -->
-    <!-- map-area -->
-    <div class="portfolio-modal modal fade" id="map-area" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- map-modal -->
+    <div class="portfolio-modal modal fade" id="map-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <!-- x on top right to close window -->
@@ -318,13 +318,18 @@
                     </div>
                 </div> -->
                 <div class="row">
-                    <div class="modal-body" ng-app="yelpApp">
+                    <div class="modal-body" ng-app="myApp">
                         <div class="col-lg-6">
+                            <!-- Yelp -->
+                            <button id="yelp" onclick="updateMapYelp()" class="btn btn-primary btn-lg hidden">Get Restaurants Near Me!</button>
+                            <!-- Eventbrite -->
+                            <button id="eventbrite" onclick="updateMapEventbrite()" class="btn btn-primary btn-lg hidden">Get Events Near Me!</button>
+                            <hr>
                             <div id="map"></div>
-                            <button id="yelp" onclick="updateMapYelp()" type="submit" class="btn btn-primary btn-lg">Go!</button>
                         </div>
-                        <div class="col-lg-6 table-responsive" ng-controller="YelpCtrl">
-                            <h2>Suggestions</h2>
+                        <!-- Yelp Info -->
+                        <div id="yelp-info" class="col-lg-6 table-responsive hidden" ng-controller="YelpCtrl">
+                            <button class="btn btn-primary btn-lg" ng-click="getBusinesses()">Refresh Suggestions</button>
                             <hr>
                             <table class="table table-striped">
                                 <tr class="success">
@@ -368,14 +373,48 @@
                                     </td>
                                 </tr>
                             </table>
-                            <button class="btn btn-primary btn-lg" ng-click="getBusinesses()">Refresh</button>
+                        </div>
+                        <!-- Eventbrite Info -->
+                        <div id="eventbrite-info" class="col-lg-6 table-responsive hidden" ng-controller="EventbriteCtrl">
+                            <button class="btn btn-primary btn-lg" ng-click="getEvents()">Refresh Suggestions</button>
+                            <hr>
+                            <table class="table table-striped">
+                                <tr class="success">
+                                    <td>
+                                        <strong>Index</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Event Name</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Address</strong>
+                                    </td>
+                                    <td>
+                                        <strong>More Information</strong>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="event in events">
+                                    <td>
+                                        <strong>{{event.index}}</strong>
+                                    </td>
+                                    <td>
+                                        <strong>{{event.name}}</strong>
+                                    </td>
+                                    <td>
+                                        <strong>{{event.address}}</strong>
+                                    </td>
+                                    <td>
+                                        <a ng-href="{{event.link}}" target="_blank">Link</a>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end map-area -->
+    <!-- end map-modal -->
 
     <!-- <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
@@ -579,12 +618,11 @@
 
     <!-- Theme JavaScript -->
     <script src="js/freelancer.js"></script>
-
     
     <!-- Script for google maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places&callback=mapsCallback" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script src="./js/google-maps.js"></script>
+    <script src="js/google-maps.js"></script>
 
 </body>
 
