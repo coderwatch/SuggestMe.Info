@@ -227,7 +227,9 @@ function addMarkersAndInfoEventbrite(json) {
                         lng: lastAdded.longitude
                     })
                 );
-                events.push(new Event(marker.label, listing.name.text, lastAdded.address + ", " + lastAdded.city + ", "+ lastAdded.region + " " + String(lastAdded.postal_code), listing.url));
+                // full address:
+                // lastAdded.address + ", " + lastAdded.city + ", "+ lastAdded.region + " " + String(lastAdded.postal_code)
+                events.push(new Event(marker.label, listing.name.text, lastAdded.city, listing.url));
                 // console.log(events[counter]);
                 var infoWindow = makeInfoWindow(listing.name.text);
                 // listener from corresponding infoWindow to marker
@@ -256,8 +258,8 @@ function getVenue(venue_id) {
         success: function(jsonResp) {
             // var ven = jQuery.parseJSON(jsonResp);
             // console.log(ven.address);
-            // console.log("jsonResp: " + jsonResp.address);
-            venue = new Venue(jsonResp.address.address_1, jsonResp.address.city, jsonResp.address.state, jsonResp.address.postal_code, jsonResp.name, jsonResp.latitude, jsonResp.longitude);
+            console.log("venue response: " + JSON.stringify(jsonResp));
+            venue = new Venue(jsonResp.address.address_1, jsonResp.address.city, jsonResp.address.region, jsonResp.address.postal_code, jsonResp.name, jsonResp.latitude, jsonResp.longitude);
             venues.push(venue);
             // console.log(jsonResp.address.address_1+","+jsonResp.address.city+","+ jsonResp.address.state+","+ 
             //   jsonResp.address.postal_code+","+ jsonResp.name+","+jsonResp.latitude+","+ jsonResp.longitude);
@@ -273,13 +275,18 @@ function getVenue(venue_id) {
 // title: the title of the marker (appears as a tooltip when hovering over marker)
 // position: a google.maps.LatLng object
 function makeMarker(map, title, position) {
-    return new google.maps.Marker({
+    var newMarker = new google.maps.Marker({
         map: map,
         title: title,
         position: position,
         // labels each marker with a different letter of the alphabet
-        label: labels[labelIndex++ % labels.length]
+        label: labels[labelIndex]
     });
+    if(labelIndex < labels.length)
+        labelIndex++;
+    else
+        labelIndex = 0;
+    return newMarker;
 }
 
 // helper function for initializing maps
@@ -349,7 +356,7 @@ function Venue(address_1, city, state, postal_code, name, latitude, longitude) {
     this.address = address_1;
     this.city = city;
     this.region = state;
-    this.postal_code = parseFloat(postal_code);
+    this.postal_code = postal_code;
     this.name = name;
     this.latitude = parseFloat(latitude);
     this.longitude = parseFloat(longitude);
