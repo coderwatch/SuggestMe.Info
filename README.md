@@ -2,7 +2,7 @@
 SuggestMe.Info
 ===========
 
-![SuggestMeInfo](.../static/images/suggest_me_logo.png)
+![SuggestMeInfo](https://cloud.githubusercontent.com/assets/7465495/17011388/7e78f8ee-4ec2-11e6-9209-1782eeaa68eb.png)
 
 **Why SuggestMe.Info?**
 -----------------------
