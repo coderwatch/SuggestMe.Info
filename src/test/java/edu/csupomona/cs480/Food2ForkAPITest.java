@@ -16,7 +16,7 @@ public class Food2ForkAPITest {
 	
 	public static void main (String[] args) throws IOException{
         try {
-        	
+        	recipelist.clear();
             final JSONObject searchResults = fork.search("vegan");
             for(int i = 0; i < 10; i++){
             	 recipelist.add(fork.getRecipe(fork.getRecipeIds(searchResults).get(i)));

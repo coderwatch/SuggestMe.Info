@@ -159,9 +159,9 @@ public class WebController {
 	//<!------Food2Fork Recipe List Search------>
 	@RequestMapping(value = "/recipe/{search}", method = RequestMethod.GET)
 	String getRecipeList(@PathVariable("search") String search)throws IOException{
-		final JSONObject searchResults = fork.search(search);
 		recipelist.clear();
-		for(int i = 10; i < 10; i++){
+		final JSONObject searchResults = fork.search(search);
+		for(int i = 0; i < 10; i++){
 			recipelist.add(fork.getRecipe(fork.getRecipeIds(searchResults).get(i)));
 		}
 		int index = (int) rand.nextInt(recipelist.size());
