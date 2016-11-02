@@ -370,7 +370,7 @@ function Event(index, name, address, link) {
     this.link = link;
 }
   
-var myApp = angular.module("myApp", [])
+var myApp = angular.module("myApp", ['ngSanitize'])
 
 myApp.controller("YelpCtrl", function($scope) {
     // for #yelp-info

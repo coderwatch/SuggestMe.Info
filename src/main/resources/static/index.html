@@ -25,14 +25,6 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body id="page-top" class="index" ng-app="myApp">
@@ -339,16 +331,15 @@
                         <div class="col-lg-6 table-responsive">
                             <button id="food2fork" ng-click="getRecipe()" class="btn btn-primary btn-lg">Load Recipe</button>
                             <hr>
-                            <img ng-src="http://static.food2fork.com/cajun0676.jpg" class="img-responsive center-block"></img>
-                            <strong>Recipe and Photo Copyright</strong>
+                            <img ng-src="{{recipe.image_url}}" class="img-responsive center-block"></img>
+                            <strong>Recipe and Photo Copyright: </strong><a ng-href="{{recipe.publisher_url}}" target="_blank">{{recipe.publisher}}</a>
                             <hr>
-                            <a ng-href="{{recipe.publisher_url}}" target="_blank">{{recipe.publisher}}</a>
                         </div>
                         <div class="col-lg-6 table-responsive">
                             <table class="table table-striped">
                                 <tr>
                                     <td class="success">
-                                        <strong>Title: Cajun Chicken Pasta</strong>
+                                        <strong>Title: {{recipe.title}}</strong>
                                     </td>
                                 </tr>
                                 <tr>
@@ -356,29 +347,14 @@
                                         <strong>Ingredients</strong>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>3 whole Boneless, Skinless Chicken Breasts, Cut Into Cubes</td></tr>
-            <tr><td>3 teaspoons Cajun Spice Mix, More To Taste</td></tr>
-            <tr><td>1 pound Fettuccine</td></tr>
-            <tr><td>2 Tablespoons Olive Oil </td></tr>
-           <tr> <td>2 Tablespoons Butter</td></tr>
-           <tr> <td>1 whole Green Bell Pepper, Seeded And Sliced</td></tr>
-           <tr> <td>1 whole Red Bell Pepper, Seeded And Sliced</td></tr>
-          <tr>  <td>1/2 whole Large Red Onion, Sliced</td></tr>
-           <tr> <td>3 cloves Garlic, Minced </td></tr>
-           <tr> <td>4 whole Roma Tomatoes, Diced</td></tr>
-            <tr><td>2 cups Low Sodium Chicken Broth </td></tr>
-           <tr> <td>1/2 cup White Wine</td></tr>
-          <tr> <td> 1 cup Heavy Cream</td></tr>
-          <tr> <td> Cayenne Pepper To Taste</td></tr>
-           <tr> <td>Freshly Ground Black Pepper, To Taste</td></tr>
-           <tr> <td>Salt To Taste</td></tr>
-           <tr> <td>Chopped Fresh Parsley, To Taste</td></tr>
+                                <tr ng-repeat="ingredient in recipe.ingredients">
+                                    <td>{{ingredient}}</td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a ng-href="http://thepioneerwoman.com/cooking/2011/09/cajun-chicken-pasta/" target="_blank"><strong> See Directions</strong></a>
+                                        <a ng-href="{{recipe.source_url}}" target="_blank"><strong>See Directions</strong></a>
                                     </td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -390,38 +366,19 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <script>
-        $(window).on("resize", function() {
-            var windowWidth = $(window).width();
-            if(windowWidth < 400){
-                $('#logo').attr("width","350px");
-            }
-            else if(windowWidth < 600){
-                $('#logo').attr('width','500px');
-            } else {
-                $('#logo').attr('width','600px');
-            }
-        });
-    </script>
-
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <!--<script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>-->
 
     <!-- Theme JavaScript -->
     <script src="js/freelancer.js"></script>
     
     <!-- Script for google maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8u4PGN6dz5-HbrY5aJZxwyzTkCfiFj8Q&libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.7/angular-sanitize.js"></script>
     <script src="js/google-maps.js"></script>
     <script src="js/book.js"></script>
     <script src="js/food2fork.js"></script>

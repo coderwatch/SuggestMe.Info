@@ -7,6 +7,8 @@ myApp.controller("RecipeCtrl", function($scope) {
             dataType: "json",
             success: function(jsonResp) {
                 $scope.recipe = jsonResp.recipe;
+                $scope.ingredients = jsonResp.recipe.ingredients;
+                $scope.$apply();
             }
         });
     }
