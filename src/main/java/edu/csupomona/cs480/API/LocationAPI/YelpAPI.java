@@ -14,8 +14,8 @@ public class YelpAPI{
 	private final static String Consumer_Key = "xr2AGjpXyVFSqOFZjukQjg";
 	private final static String Consumer_Secret = "LWKk-n_sXFJtpSxFvyNOK4yIChA";
 	private final static String PROTECTED_RESOURCE_URL = "https://api.yelp.com/v2/search";
-	private final static String Token = "eT__OvmM5po3P9-HdGkux50Y7cL7Nhi_";
-	private final static String Token_Secret = "rZYKnrojkpmQlOb2xg5izVpLVE4";
+	private final static String Token = "mz6jzjOwwNiWHm9HM0SZL3lS2vAdFiv5";
+	private final static String Token_Secret = "ffYjX0GfbQ7vrWnEjTPJFQiS93w";
 	private String location = "";
 	private String geocoordinates = "";
 	final OAuth10aService service;
